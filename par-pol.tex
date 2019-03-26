@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+
+\title{Particle Pollution Estimation using CNNs on Images}
+
+\author{
+  Yash Jalan \thanks{M.S. Scientific Computing student} \\
+  Department of Mathematics, Courant Institute\\
+  New York University\\
+  New York, NY 10012 \\
+  \texttt{yj627@nyu.edu} \\
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+I will write this at the end of the completed project.
+\end{abstract}
+
+ %keywords can be removed
+\keywords{PM-2.5 \and CNNs \and More}
+
+
+\section{Introduction}
+
+Dependence on fuel, as a source of energy via combustion, has increased over the years. The process of combustion (burning fuel, wood, etc.) produces fine particles called PM-2.5, which are less than 2.5 micrometers in diameter. Increased concentration/density of airborne PM-2.5 can cause/trigger respiratory diseases. In many urban areas in developing nations, where there exists many motor vehicles, industries and people, PM-2.5 concentration is high. Typically, PM-2.5 is accurately determined/measured by expensive devices inaccessible to the general public. High PM-2.5 concentration in the air leads to low visibility (haze). Often we hear people looking around and being able to determine the presence of pollution. Human eye however cannot accurately distinguish between haze caused by fog and PM-2.5 concentrations  and also cannot accurately estimate the level of  PM-2.5 concentration just by observing the atmosphere around. In order to increase awareness about the air pollution levels and harm that it causes, it is good idea to develop an easily accessible and cheap mechanism that the general public can use to be better able to determine the PM-2.5 concentration around them. This paper presents a technique using DCNNs on images to determine the PM-2.5 concentration levels in real time. With increasing accessibility to mobile devices and their increased computational capabilities and ability to capture high quality photos, people can use this technique to capture image(s) of their surroundings and have a better idea about the PM-2.5 concentration level around them.
+
+
+\section{Related Work}
+\label{sec:related work}
+
+There has been some previous work which have used images to estimate or classify PM-2.5 concentration levels. Wang et al. \cite{realtime} and Liu et al. \cite{PP} use domain specific knowledge to model scattering of light and accordingly generate features as input to a regression model to determine haze level/air quality/PM concentration. Li’s et al. \cite{Usergen} proposed method also relies on modeling light propagation to produce an estimate but uses combination of a depth map obtained using a deep convolutional neural field and a transmission matrix obtained using a dark channel prior. \cite{realtime} and \cite{PP} additionally require a depth map of the image. While \cite{realtime} also requires a sequence of the same image as input, the model in \cite{PP} is trained specifically for three single scene images.  Bo et al. \cite{PPconv}, Zhang et al \cite{EAPconv} and Chakma et al \cite{IBAQconv} use different deep convolutional neural networks to estimate/classify the PM-2.5 concentration levels. While Bo et al. \cite{PPconv} combines the output of the CNN on the images with weather information in a regression model to produce the final estimate, Zhang et al. \cite{EAPconv} and Chakma et al. \cite{EAPconv} simply feed a CNN to the input images to produce a result. All three NN approaches do not provide any understanding as to why the network learns the correct results and moreover, are not very accurate.
+This paper tries to find the middle path between models \cite{realtime},\cite{PP},\cite{Usergen} and models \cite{PPconv},\cite{EAPconv},\cite{IBAQconv}. This paper uses intuition of transmission of light presented in \cite{realtime},\cite{PP},\cite{Usergen} in the preprocessing stage to capture depth of foreground objects and the simplicity of CNNs in \cite{PPconv},\cite{EAPconv},\cite{IBAQconv} to produce more accurate real-time estimations of pollution estimations on any range of images.
+
+\section{Datasets}
+\label{sec:Datasets} 
+
+So far, I have collected close to 900 images (of which 75 are videos) of NCR India spanning over last 1-2 years from Instagram. The PM-2.5 concentration levels of Delhi are available via the Government of India \footnote{\url{https://app.cpcbccr.com/ccr/#/caaqm-dashboard-all/caaqm-landing/caaqm-comparison-data}}. In addition, 1000+ images (yet to be saved) of Beijing \footnote{\url{https://www.tour-beijing.com/real_time_weather_photo/}} and 1885 photos of Oriental Pearl Tower in Shanghai city, China (from AMOS dataset in \cite{PP}) and the corresponding PM-2.5 estimates from US Mission China \footnote{\url{http://www.stateair.net/web/historical/1/1.html}} are easily available for use.
+
+\section{Methodology}
+\label{sec:Methodology}
+
+\subsection{Preprocessing}
+
+Directly feeding a CNN with the input images will make the network learn the contours of the objects in the scene and will most likely produce unintuitive results (\cite{PPconv},\cite{EAPconv},\cite{IBAQconv}). For the network to be able to learn the correct features, specifically the colors of the background and foreground, preprocessing the images is essential before feeding it as inputs to the network. Here are some potentially useful preprocessing steps (yet to be experimented with) that might produce more intuitive inputs to the network:
+
+\begin{itemize}
+    \item Despeckling/denoising the original image to produce a sharper image so that the machine can detect finer particles in the image. Deblurring the image can also be useful to remove any human error while taking the photo.
+    \item Directly detecting microscopic particles (existing in a few pixels) in the image and then inputting those few pixels as input to the images would be beneficial since the pixels would intuitively represent PM-2.5 particles.
+    \item Reconstructing a haze-free foreground and background can help find the difference between the original and reconstructed image allowing us to roughly quantify the haze degree factor for each pixel. Serving this as input can improve the network performance.
+    \item Using predetermined pollution specific colors/color ranges can filter out the relevant regions of the image.
+    \item Pixel-wise segmentation of image and inputting each segments separately to the network is also a good idea since the shape of the foreground will not play a crucial role in determining the output.
+    \item More standard preprocessing techniques that could reduce the effect of contours on the network are normalizing and shuffling the pixels of each image.
+\end{itemize}
+
+If the underlying problems mentioned above are not dealt with, the network will not learn the correct features and can produce meaningless results. To test whether the preprocessing methods above lessen or remove the underlying problems, (1) the same network after preprocessing should produce better results (2) the images after preprocessing should “appear” as more intuitive inputs to the network and (3) slight changes in the input should not drastically change the output of the network.
+
+\bibliographystyle{unsrt}  
+%\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
+%%% and comment out the ``thebibliography'' section.
+
+
+%%% Comment out this section when you \bibliography{references} is enabled.
+\begin{thebibliography}{1}
+
+\bibitem{realtime}
+Haoqian Wang, Xin Yuan, Xingzheng Wang, Yongbing Zhang, Qionghai Dai.
+\newblock Real-time Air Quality Estimation Based on Color
+Image Processing.
+\newblock In {\em IEEE Conference on Visual Communications and Image Processing}, pp. 326–329. IEEE, 2014.
+
+\bibitem{PP}
+Chenbin Liu, Francis Tsow, Yi Zou, Nongjian Tao.
+\newblock Particle Pollution Estimation Based on Image
+Analysis.
+\newblock In {\em PloS one 2016}. 2016.
+
+\bibitem{Usergen}
+Yucheng Li, Jifei Huang, and Jiebo Luo. 
+\newblock Using user generated online photos to estimate and monitor air pollution in major cities.
+\newblock In {\em Proceedings of the 7th ACM international conference on Internet Multimedia Computing and Service}, pp. 79. ACM, 2015.
+
+\bibitem{PPconv}
+Qirong Bo, Wenwen Yang, Nabin Rijal, Yilin Xie, Jun Feng, Jing Zhang.
+\newblock Particle Pollution Estimation from Images using Convolutional Neural Network and Weather Features.
+\newblock In {\em 2018 IEEE International Conference on Image Processing}. IEEE, 2018.
+
+\bibitem{EAPconv}
+Chao Zhang, Junchi Yan, Changsheng Li, Xiaoguang Rui, Liang Liu, and Rongfang Bie.
+\newblock On Estimating Air Pollution from Photos Using
+Convolutional Neural Network.
+\newblock In {\em Proceedings of the 24th ACM international conference on Multimedia}, pages 297-301. ACM, 2016.
+
+\bibitem{IBAQconv}
+Avijoy Chakma, Ben Vizena, Tingting Cao, Jerry Lin, and Jing Zhang.
+\newblock Image Based Air Quality Analysis Using Deep
+Convolutional Neural Network.
+\newblock In {\em 2017 IEEE International Conference on Image Processing}. IEEE, 2017.
+
+\end{thebibliography}
+
+
+\end{document}
