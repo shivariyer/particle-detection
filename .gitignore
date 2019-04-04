@@ -4,3 +4,6 @@ Shanghai3
 Beijing
 *.zip
 city2kitti
+*.pdf
+.DS_Store
+__MACOSX*
