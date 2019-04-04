@@ -124,7 +124,7 @@ def depth_1d(params,image_path,checkpoint_path,city):
 
     return img_arr
 
-def main():
+def main(_):
 	data = pd.read_csv('../single_data.csv')
 	params = monodepth_parameters(encoder='vgg',height=256,width=256,batch_size=2,num_threads=1,num_epochs=1,do_stereo=False,wrap_mode="border",use_deconv=False,alpha_image_loss=0,disp_gradient_loss_weight=0,lr_loss_weight=0,full_summary=False)
 
@@ -155,8 +155,19 @@ def main():
 	        permax.append(np.max(mult_arr))
 	        pm.append(float(row['ppm']))
 	        print(index)
+	        tf.reset_default_graph()
 	    # else:
 	    #     img = cv2.imread(filename)[50:350, :]
+	print(spearmanr(pm,per50))
+	print(spearmanr(pm,per75))
+	print(spearmanr(pm,per90))
+	print(spearmanr(pm,permean))
+	print(spearmanr(pm,permax))
+	print(pearsonr(pm,per50))
+	print(pearsonr(pm,per75))
+	print(pearsonr(pm,per90))
+	print(pearsonr(pm,permean))
+	print(pearsonr(pm,permax))
 
 if __name__ == '__main__':
 	tf.app.run()
