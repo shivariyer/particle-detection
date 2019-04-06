@@ -8,7 +8,6 @@ import time
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
 import scipy.misc
-import matplotlib.pyplot as plt
 from skimage import color
 from monodepth_model import *
 from monodepth_dataloader import *
@@ -59,7 +58,7 @@ def haze_1d(img, light_intensity, windowSize, t0, w):
             sliceimg = img[y_low:y_high, x_low:x_high]
             dark_channel = find_dark_channel(sliceimg)
             t = 1.0 - (w * img.item(y, x, dark_channel) / light_intensity)
-            outimg.itemset((y,x), t)
+            outimg.itemset((y,x), max(t,t0))
             #outimg.itemset((y,x), max(t,t0)*255)
     
     img_arr = np.ravel(outimg)
@@ -143,7 +142,7 @@ def main(_):
 	        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	        light_intensity = find_intensity_of_atmospheric_light(img, gray)
 	        w = 0.9
-	        t0 = 0.01
+	        t0 = 0.05
 	        haze_arr = haze_1d(img, light_intensity, 20, t0, w)
 	        depth_arr = depth_1d(params,filename,'../city2kitti/model_city2kitti',city)
 	        mult_arr = np.multiply(depth_arr, haze_arr)
@@ -154,15 +153,37 @@ def main(_):
 	        permean.append(np.average(mult_arr))
 	        permax.append(np.max(mult_arr))
 	        pm.append(float(row['ppm']))
-	        print(index)
+	        #print(index)
 	        tf.reset_default_graph()
-	    # else:
-	    #     img = cv2.imread(filename)[50:350, :]
-	print(spearmanr(pm,per50))
-	print(spearmanr(pm,per75))
-	print(spearmanr(pm,per90))
-	print(spearmanr(pm,permean))
-	print(spearmanr(pm,permax))
+	    else:
+	        img = cv2.imread(filename)[50:350, :]
+	        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+	        light_intensity = find_intensity_of_atmospheric_light(img, gray)
+	        w = 0.9
+	        t0 = 0.05
+	        haze_arr = haze_1d(img, light_intensity, 20, t0, w)
+	        depth_arr = depth_1d(params,filename,'../city2kitti/model_city2kitti',city)
+	        mult_arr = np.multiply(depth_arr, haze_arr)
+	        per50.append(np.percentile(mult_arr,50))
+	        per75.append(np.percentile(mult_arr,75))
+	        per90.append(np.percentile(mult_arr,90))
+	        permean.append(np.average(mult_arr))
+	        permax.append(np.max(mult_arr))
+	        pm.append(float(row['ppm']))
+	        if index < 20:
+	        	print(index)
+	        tf.reset_default_graph()
+
+	print("50 percentile")
+	print(spearmanr(pm,per50,nan_policy='omit'))
+	print("75th percentile")
+	print(spearmanr(pm,per75,nan_policy='omit'))
+	print("90th percentile")
+	print(spearmanr(pm,per90,nan_policy='omit'))
+	print("mean")
+	print(spearmanr(pm,permean,nan_policy='omit'))
+	print("max")
+	print(spearmanr(pm,permax,nan_policy='omit'))
 	print(pearsonr(pm,per50))
 	print(pearsonr(pm,per75))
 	print(pearsonr(pm,per90))
