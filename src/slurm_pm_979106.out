@@ -1,0 +1,37 @@
+Epoch: 1, MSE train set: 708.50428562
+Epoch: 1, MSE val set: 651.38587303
+
+Epoch: 2, MSE train set: 589.50156498
+Epoch: 2, MSE val set: 687.72404299
+
+Epoch: 3, MSE train set: 569.88659850
+Epoch: 3, MSE val set: 575.24401564
+
+Epoch: 4, MSE train set: 526.88839465
+Epoch: 4, MSE val set: 531.13924357
+
+Epoch: 5, MSE train set: 521.94255099
+Epoch: 5, MSE val set: 597.65577729
+
+Epoch: 6, MSE train set: 559.52803693
+Epoch: 6, MSE val set: 637.04134181
+
+Epoch: 7, MSE train set: 555.10351882
+Epoch: 7, MSE val set: 590.41632825
+
+Epoch: 8, MSE train set: 529.91094425
+Epoch: 8, MSE val set: 642.50264977
+
+Epoch: 9, MSE train set: 543.32768961
+Epoch: 9, MSE val set: 580.72193140
+
+Epoch: 10, MSE train set: 504.80580540
+Epoch: 10, MSE val set: 515.89148204
+
+Epoch: 11, MSE train set: 510.44169106
+Epoch: 11, MSE val set: 583.86664536
+
+Epoch: 12, MSE train set: 476.99782302
+Epoch: 12, MSE val set: 557.58839988
+
+slurmstepd: error: *** JOB 979106 ON gpu-02 CANCELLED AT 2019-05-01T00:28:17 DUE TO TIME LIMIT ***

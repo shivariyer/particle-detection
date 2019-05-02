@@ -7,3 +7,4 @@ city2kitti
 *.pdf
 .DS_Store
 __MACOSX*
+img

@@ -5,16 +5,16 @@ import cv2
 import numpy as np
 import re
 import time
-import tensorflow as tf
-import tensorflow.contrib.slim as slim
+#import tensorflow as tf
+#import tensorflow.contrib.slim as slim
 import scipy.misc
 from skimage import color
-from monodepth_model import *
-from monodepth_dataloader import *
-from average_gradients import *
+#from monodepth_model import *
+#from monodepth_dataloader import *
+#from average_gradients import *
 import pandas as pd
-from scipy.stats import spearmanr
-from scipy.stats import pearsonr
+#from scipy.stats import spearmanr
+#from scipy.stats import pearsonr
 
 class Channel_value:
     val = -1.0
@@ -58,12 +58,12 @@ def haze_1d(img, light_intensity, windowSize, t0, w):
             sliceimg = img[y_low:y_high, x_low:x_high]
             dark_channel = find_dark_channel(sliceimg)
             t = 1.0 - (w * img.item(y, x, dark_channel) / light_intensity)
-            outimg.itemset((y,x), max(t,t0))
-            #outimg.itemset((y,x), max(t,t0)*255)
+            #outimg.itemset((y,x), max(t,t0))
+            outimg.itemset((y,x), max(t,t0)*255)
     
-    img_arr = np.ravel(outimg)
+    #img_arr = np.ravel(outimg)
 
-    return img_arr
+    return outimg
 
 def post_process_disparity(disp):
     _, h, w = disp.shape
@@ -75,6 +75,7 @@ def post_process_disparity(disp):
     r_mask = np.fliplr(l_mask)
     return r_mask * l_disp + l_mask * r_disp + (1.0 - l_mask - r_mask) * m_disp
 
+'''
 def depth_1d(params,image_path,checkpoint_path,city):
 
     left  = tf.placeholder(tf.float32, [2, 256, 256, 3])
@@ -122,17 +123,47 @@ def depth_1d(params,image_path,checkpoint_path,city):
     img_arr = np.ravel(disp_to_img)
 
     return img_arr
+'''
 
-def main(_):
+def main():
 	data = pd.read_csv('../single_data.csv')
-	params = monodepth_parameters(encoder='vgg',height=256,width=256,batch_size=2,num_threads=1,num_epochs=1,do_stereo=False,wrap_mode="border",use_deconv=False,alpha_image_loss=0,disp_gradient_loss_weight=0,lr_loss_weight=0,full_summary=False)
+	#data2 = pd.read_csv('../delhi_data.csv')
+	#params = monodepth_parameters(encoder='vgg',height=256,width=256,batch_size=2,num_threads=1,num_epochs=1,do_stereo=False,wrap_mode="border",use_deconv=False,alpha_image_loss=0,disp_gradient_loss_weight=0,lr_loss_weight=0,full_summary=False)
 
-	pm = []
-	per50 = []
-	per75 = []
-	per90 = []
-	permean = []
-	permax = []
+	#pm = []
+	#per50 = []
+	#per75 = []
+	#per90 = []
+	#permean = []
+	#permax = []
+
+	for index, row in data.iterrows():
+	    city = row['filename'][0]
+	    filename = '../'+row['filename']+'.jpg'
+	    if city == "B":
+	        img = cv2.imread(filename)[:650, :]
+	        name = '../'+row['filename']+'_mod.jpg'
+	        print(name)
+	        cv2.imwrite(name, img)
+	    else:
+	        img = cv2.imread(filename)[50:350, :]
+	        name = '../'+row['filename']+'_mod.jpg'
+	        print(name)
+	        cv2.imwrite(name, img)
+
+'''
+	for index, row in data2.iterrows():
+	    filename = '../img/'+row['filename']+'.jpg'
+	    img = cv2.imread(filename)
+	    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+	    light_intensity = find_intensity_of_atmospheric_light(img, gray)
+	    w = 0.95
+	    t0 = 0.05
+	    haze_arr = haze_1d(img, light_intensity, 20, t0, w)
+	    name = '../img/'+row['filename']+'_trans.jpg'
+	    print(name)
+	    cv2.imwrite(name, haze_arr)
+
 
 	for index, row in data.iterrows():
 	    city = row['filename'][0]
@@ -141,54 +172,59 @@ def main(_):
 	        img = cv2.imread(filename)[:650, :]
 	        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	        light_intensity = find_intensity_of_atmospheric_light(img, gray)
-	        w = 0.9
+	        w = 0.95
 	        t0 = 0.05
 	        haze_arr = haze_1d(img, light_intensity, 20, t0, w)
-	        depth_arr = depth_1d(params,filename,'../city2kitti/model_city2kitti',city)
-	        mult_arr = np.multiply(depth_arr, haze_arr)
+	        #depth_arr = depth_1d(params,filename,'../city2kitti/model_city2kitti',city)
+	        #mult_arr = np.multiply(depth_arr, haze_arr)
 
-	        per50.append(np.percentile(mult_arr,50))
-	        per75.append(np.percentile(mult_arr,75))
-	        per90.append(np.percentile(mult_arr,90))
-	        permean.append(np.average(mult_arr))
-	        permax.append(np.max(mult_arr))
-	        pm.append(float(row['ppm']))
-	        #print(index)
-	        tf.reset_default_graph()
+	        #per50.append(np.percentile(mult_arr,50))
+	        #per75.append(np.percentile(mult_arr,75))
+	        #per90.append(np.percentile(mult_arr,90))
+	        #permean.append(np.average(mult_arr))
+	        #permax.append(np.max(mult_arr))
+	        #pm.append(float(row['ppm']))
+	        name = '../'+row['filename']+'_trans.jpg'
+	        print(name)
+	        cv2.imwrite(name, haze_arr)
+	        #tf.reset_default_graph()
 	    else:
 	        img = cv2.imread(filename)[50:350, :]
 	        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	        light_intensity = find_intensity_of_atmospheric_light(img, gray)
-	        w = 0.9
+	        w = 0.95
 	        t0 = 0.05
 	        haze_arr = haze_1d(img, light_intensity, 20, t0, w)
-	        depth_arr = depth_1d(params,filename,'../city2kitti/model_city2kitti',city)
-	        mult_arr = np.multiply(depth_arr, haze_arr)
-	        per50.append(np.percentile(mult_arr,50))
-	        per75.append(np.percentile(mult_arr,75))
-	        per90.append(np.percentile(mult_arr,90))
-	        permean.append(np.average(mult_arr))
-	        permax.append(np.max(mult_arr))
-	        pm.append(float(row['ppm']))
-	        if index < 20:
-	        	print(index)
-	        tf.reset_default_graph()
+	        #depth_arr = depth_1d(params,filename,'../city2kitti/model_city2kitti',city)
+	        #mult_arr = np.multiply(depth_arr, haze_arr)
+	        #per50.append(np.percentile(mult_arr,50))
+	        #per75.append(np.percentile(mult_arr,75))
+	        #per90.append(np.percentile(mult_arr,90))
+	        #permean.append(np.average(mult_arr))
+	        #permax.append(np.max(mult_arr))
+	        #pm.append(float(row['ppm']))
+	        name = '../'+row['filename']+'_trans.jpg'
+	        print(name)
+	        cv2.imwrite(name, haze_arr)
+	        #tf.reset_default_graph()
 
-	print("50 percentile")
-	print(spearmanr(pm,per50,nan_policy='omit'))
-	print("75th percentile")
-	print(spearmanr(pm,per75,nan_policy='omit'))
-	print("90th percentile")
-	print(spearmanr(pm,per90,nan_policy='omit'))
-	print("mean")
-	print(spearmanr(pm,permean,nan_policy='omit'))
-	print("max")
-	print(spearmanr(pm,permax,nan_policy='omit'))
-	print(pearsonr(pm,per50))
-	print(pearsonr(pm,per75))
-	print(pearsonr(pm,per90))
-	print(pearsonr(pm,permean))
-	print(pearsonr(pm,permax))
+	#print("50 percentile")
+	#print(spearmanr(pm,per50,nan_policy='omit'))
+	#print("75th percentile")
+	#print(spearmanr(pm,per75,nan_policy='omit'))
+	#print("90th percentile")
+	#print(spearmanr(pm,per90,nan_policy='omit'))
+	#print("mean")
+	#print(spearmanr(pm,permean,nan_policy='omit'))
+	#print("max")
+	#print(spearmanr(pm,permax,nan_policy='omit'))
+	#print(pearsonr(pm,per50))
+	#print(pearsonr(pm,per75))
+	#print(pearsonr(pm,per90))
+	#print(pearsonr(pm,permean))
+	#print(pearsonr(pm,permax))
+'''
 
 if __name__ == '__main__':
-	tf.app.run()
+	#tf.app.run()
+	main()
