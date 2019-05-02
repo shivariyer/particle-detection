@@ -1,0 +1,166 @@
+\documentclass{article}
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+
+
+\title{Particle Pollution Estimation using Images}
+
+\author{
+  Yash Jalan \thanks{M.S. Scientific Computing} \\
+  Courant Institute of Mathemetics\\
+  New York University\\
+  New York, NY 10012 \\
+  \texttt{yj627@nyu.edu} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Outdoor images can often reveal important atmospheric information. It is not hard to determine by looking at an outdoor image whether the atmosphere in the image is hazy, smoky or clear. It can be useful for the general public to be able to determine how hazy, smoky or how polluted the atmosphere actually is. In this paper, a new technique to estimate the PM-2.5 concentration in the air using images is studied. The technique combines computer vision techniques of dehazing and convolutional neural networks to approximate the pollution concentration level in the air using an image. Existing computer vision image dehazing algorithm via a dark channel is used to obtain a transmission function which estimates the pixel-wise haze density in the image. The extracted transmission function serves as the main feature in the final convolutional neural network to approximate PM-2.5 levels in the image. This is achieved by pretraining a UNet with input as hazy colored outdoor images and the haze density images as output. The mean square error of this prior network is close to $10^{-5}$. The weights of the pretraining UNet are transferred to the final network consisting of a LeNet-5 sitting on top of the UNet to approximate the PM-2.5 concentration in the image. On a dataset of roughly 4300 images, this method achieves an average mean square error of 500 in 20 epochs, which is not all that bad as PM-2.5 concentrations in the images range between 0 and 600 and a lot of the images collected using Instagram do not have accurate date and times associated with them and hence do not have the correct PM-2.5 concentration readings associated with it.
+\end{abstract}
+
+\keywords{Haze\and PM-2.5 \and CNN \and Dark  Channel Prior \and UNet \and LeNet-5 \and More}
+
+
+\section{Introduction}
+
+Dependence on fuel, as a source of energy via combustion, has increased over the years. The process of combustion (burning fuel, wood, etc.) produces fine particles called PM-2.5, which are less than 2.5 micrometers in diameter. Increased concentration/density of airborne PM-2.5 can cause/trigger respiratory diseases. In many urban areas in developing nations, where there exists many motor vehicles, industries and people, PM-2.5 concentration is high. Typically, PM-2.5 is accurately determined/measured by expensive devices inaccessible to the general public. High PM-2.5 concentration in the air leads to low visibility (haze). Often we hear people looking around and being able to determine the presence of pollution. Human eye however cannot accurately distinguish between haze caused by fog and PM-2.5 concentrations  and also cannot accurately estimate the level of  PM-2.5 concentration just by observing the atmosphere around. In order to increase awareness about the air pollution levels and harm that it causes, it is good idea to develop an easily accessible and cheap mechanism that the general public can use to be better able to determine the PM-2.5 concentration around them. This paper presents a technique using images to determine the PM-2.5 concentration levels in real time. With increasing accessibility to mobile devices and their increased computational capabilities and ability to capture high quality photos, people can use this technique to capture image(s) of their surroundings and have a better idea about the PM-2.5 concentration level around them.
+
+\section{Related Work}
+\label{sec:related work}
+
+There has been some previous work which have used images to estimate or classify PM-2.5 concentration levels. Wang et al. \cite{realtime} and Liu et al. \cite{PP} use domain specific knowledge to model scattering of light and accordingly generate features as input to a regression model to determine haze level/air quality/PM concentration. Li’s et al. \cite{Usergen} proposed method also relies on modeling light propagation to produce an estimate but uses combination of a depth map obtained using a deep convolutional neural field and a transmission matrix obtained using a dark channel prior. \cite{realtime} and \cite{PP} additionally require a depth map of the image. While \cite{realtime} also requires a sequence of the same image as input, the model in \cite{PP} is trained specifically for three single scene images.  Bo et al. \cite{PPconv}, Zhang et al \cite{EAPconv} and Chakma et al \cite{IBAQconv} use different deep convolutional neural networks to estimate/classify the PM-2.5 concentration levels. While Bo et al. \cite{PPconv} combines the output of the CNN on the images with weather information in a regression model to produce the final estimate, Zhang et al. \cite{EAPconv} and Chakma et al. \cite{EAPconv} simply feed a CNN to the input images to produce a result. All three NN approaches do not provide any understanding or intuition as to why the network learns the correct features and moreover, are not very accurate.
+This paper tries to find the middle path between models in \cite{realtime},\cite{PP},\cite{Usergen} and models in \cite{PPconv},\cite{EAPconv},\cite{IBAQconv}. This paper uses light scattering model in \cite{realtime},\cite{PP} to generate a transmission function to estimate the pixel-wise haze density in the image as done in \cite{Usergen}, which is used as the main feature in the final deep CNN to produce more accurate real-time pollution estimations using images.
+
+\section{Datasets}
+\label{sec:Datasets} 
+The final dataset consists of two parts: single scene outdoor images of Beijing and Shanghai and multiple scene outdoor images of Delhi. In total, there are 4332 images and their corresponding PM-2.5 concentration levels in the dataset.
+\subsection{Single Scene}
+This dataset consists of images from Beijing and Shanghai. The Beijing images are of the exact same outdoor scene captured at different times of the day and days of the year. There are in total 327 images of Beijing. Similarly, 1885 images of the Oriental Pearl Tower in Shanghai City captured at different times of the day and days of the year exist. The date and times of the captured images are exact and the PM-2.5 concentrations obtained from US Mission China \footnote{\url{http://www.stateair.net/web/historical/1/1.html}} are matched with the date and time of the image.
+\subsection{Multiple Scenes}
+The second part of the dataset consists of 2120 outdoor images of Delhi. The images (including frames from videos) along with their upload date, time and exact location if available are scraped from Instagram. Upload times of the images are checked to see if they make sense, i.e. if the image is of daytime then the upload time should be of daytime and similarly for nighttime. If the upload time indicates night/day and the image is clearly of daytime/nighttime, then the upload time is subtracted by 12 hours. The timing are important as they are required to match with the times of the PM-2.5 concentration levels, which are obtained from the  Govt. of India sensors (\textcolor{red}{footnote}). The dates don't matter so much as research from Shiva, Prof. Subramanian (\textcolor{red}{cite}) show that the daily pollution levels in Delhi follow a strict pattern. So, the previous day's PM-2.5 concentration level will look similar to the next day's PM-2.5 concentration level and will only vary based on the time of the day or over a period of months. Since there exists PM-2.5 concentration data from multiple pollution sensors across Delhi, an average of the "hotspots" are taken for images with no specific location given and for images with specific location given, data from the closest or closest two monitoring station(s) are taken.
+
+\newpage
+\section{Methodology}
+\label{sec:Methodology}
+
+\subsection{Preprocessing}
+
+Directly feeding a CNN with hazy outdoor colored input images will likely make the network learn the contours of the objects in the scene and will likely produce unintuitive results such as in (\cite{PPconv},\cite{EAPconv},\cite{IBAQconv}). For a CNN to be able to learn the correct features, specifically the colors of the background and foreground, preprocessing the images or generating intuitive features is essential before feeding it as input to a network. Here are some preprocessing steps that were taken and some features that were generated as part of this paper:
+\begin{itemize}
+    \item The difference between the denoised (via OpenCV) and original image to detect fine particles in the image.
+    \item A pixel-wise depth estimate of the image to reflect the density of haze of foreground objects. This was generated using unsupervised Monocular Depth Estimation with Left-Right Consistency (\textcolor{red}{cite}) and implemented using existing codebase on GitHub \footnote{\url{https://github.com/mrharicot/monodepth}}.
+    \item A pixel-wise haze density approximation obtained from a transmission function using computer vision algorithm of dehazing an image via a dark channel prior (\textcolor{red}{cite}). The self-implemented algorithm is slow because it doesn't make use of GPUs. 
+    \item Standardizing the images by subtracting from each image each channel's mean and dividing by the standard deviation (mean and std are computed with respect to the entire image dataset) to induce an underlying normal distribution.
+\end{itemize}
+To determine causal relationship between the preprocessed images/generated features and the PM-2.5 concentration levels, strong correlation is a good indicator whether the "intuitive" features will give good results or not. A combination of all the above features were tried and correlations between the quantiles of the features and PM-2.5 levels were computed for each dataset separately. The strongest correlations are obtained for the haze density feature, summarized below.
+\begin{center}
+\begin{tabular}{ c c c c }
+ Dataset & Quantile & Spearman rank correlation & Pearson correlation \\ 
+ Beijing & 100 & -0.68237 & -0.70803\\  
+ Shanghai & 90 & -0.48599  & -0.52572\\
+ Beijing \& Shanghai & 80 & -0.4059  & -0.3045\\
+ Delhi & 100 & -0.01402  & -0.23487\\
+\end{tabular}
+\end{center}
+It is clear from the table above that there exists a negatively sloped linear relationship between the generated haze density of an image and the image's PM-2.5 concentration level. For the single scene accurately timed images from China, the correlations confirm that haze density feature is infact "intuitive". The inaccurate readings of the PM-2.5 concentration levels because of inaccurate timings, and filtering of images, the haze density feature of Instagram images of Delhi do not show monotonic relationship with the PM-2.5 concentration level, but the Pearson correlation does show there exists slight non-montonic relationship. Note that correlation only confirms a linear relationship between the input and output, however, since the model being studied uses nonlinear combinations of the input feature, the final results are not reflected by this measure. A linear combination of the depth estimating feature and haze density feature produced slightly better correlations for the Beijing dataset, and similar or slightly worse results for the other datasets \cite{Usergen}. Since the haze density image produced using a transmission function is a rough estimate of the depth (\textcolor{red}{cite}) and the results of the two competing features vary only slightly, the final model uses only the pixel-wise haze density feature.
+
+\subsubsection{Dark Channel Prior}
+He et al. (\textcolor{red}{cite}) statistically observe that for a haze-free image it is very likely that at least one of the color channels has very low intensity pixel values. Because of scattering of light, all color channels of hazy images have high intensity pixel values. Using this observation, light scattering model, and intuition that the pixel-values of the dark channel (color channel with lowest intensity on non-sky patches) of the hazy image is a rough estimate haze density, He et al. propose a single-image dehazing algorithm which requires computing the transmission function/density pixel values as part of the final algorithm. The underlying light propagation model in the algorithm requires computing the atmospheric light to compute the transmission function, giving more importance to objects closer in the z-direction to the camera. The density of haze will be larger for objects closer to the camera, which follows from the intuition that reflection of light against closest objects are the best indicators of the haze. So, indirectly the transmission function also computes a rough estimate of the depth of objects in the image.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{u-net-architecture.png}
+  \caption{U-Net}
+  \label{U-Net}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{The-LeNet-5-Architecture.png}
+  \caption{LeNet-5}
+  \label{LeNet-5}
+\end{figure}
+
+\newpage
+\subsection{Pretraining}
+The pixel-wise haze densities of the entire image dataset is computed using the dark channel prior algorithm. It is possible to use this feature directly as input to a network, but that has two main drawbacks. One, the final application will require to first generate the haze denisity of the input hazy image which is a computationally expensive process possibly requiring use of a GPU. Two, it will remove the possibility of the machine learning possibly rich hidden details from the original hazy image, making the model more restrictive. A nice work-around solution to this is to use a pretraining CNN for the machine to learn to generate haze densities of an image on the fly. A U-Net (\textcolor{red}{cite}) (popularly used for segmentation on medical images) is used for this task. The architecture of the U-Net can be observed in [Figure \ref{U-Net}]. The input image size differs slightly. The images are resized to 256 by 256 and the output is of same size except it consists of only one channel. The input images are standardized using mean, standard deviation computed with respect to the entire dataset. This helps (empirically tested) the network converge faster. With the entire dataset as input for training, after only 5 epochs, the mean square error is less than $10^{-5}$.
+
+\subsection{Model}
+
+The final model to approximate the PM-2.5 concentrations in an image consists of U-Net [Figure \ref{U-Net}] joined at the end to a LeNet-5 [Figure \ref{LeNet-5}]. It takes standardized outdoor hazy colored images as input and produces an approximation of PM-2.5 concentrations in the images. Again, the input size of the images to LeNet-5 vary as compared to the figure. The input to the LeNet layers is the output from the U-Net which is a single channeled image of size 256 by 256. Using transfer learning, the weights of the pretraining U-Net are transferred to this final network so that the CNN can leverage the pretrained U-Net to generate the haze-density feature of the input image. The final output of this combination of U-Net and LeNet-5 CNN is a single number of the PM-2.5 concentration level of the image.
+
+\section{Results}
+Both the pretraining and final model are trained with loss function as mean square error. The final dataset (consisting of both single scene and multiple scene images) is divided randomly (using a constant seed generator) into 80 percent training and 20 percent validation sets. With optimizer as Adam (algorithm is based on the gradient of the Augmented Lagrangian of the objective function and is known to generally work well for large datasets) and learning rate as $0.0005$, the mean square error roughly equal for training and validation sets is on average (tested on multiple runs) approximately $500$ after 10-15 epochs. The PM-2.5 concentration levels range between 0 and 600. So, on average an absolute error of $23$ is expected per image. \\\\
+\textbf{Note:}\\
+1) Here is a to the repository of this project: \url{https://github.com/yashjal/particle-detection}.\\
+2) I am yet to analyze the errors, which involves specifically looking at the examples for which the model fails and badly approximates the pollution level (probably images from the Delhi dataset) for the image.\\ 3) I am also yet to tune the hyperparameters of the model such as the learning rate of the optimizer, optimizer itself, using dropout, batch normalization layers, the kernel sizes, etc.\\
+
+%TODO: add github, hyperparam tuning, to complete the following sections especially analyzing the fail cases
+
+\subsection{Comparison to Related Work}
+
+\subsection{Successful vs. Failed Cases}
+
+\section{Improvements \& Future Work}
+
+\newpage
+\bibliographystyle{unsrt}  
+%\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
+%%% and comment out the ``thebibliography'' section.
+
+
+%%% Comment out this section when you \bibliography{references} is enabled.
+\begin{thebibliography}{1}
+
+\bibitem{realtime}
+Haoqian Wang, Xin Yuan, Xingzheng Wang, Yongbing Zhang, Qionghai Dai.
+\newblock Real-time Air Quality Estimation Based on Color
+Image Processing.
+\newblock In {\em IEEE Conference on Visual Communications and Image Processing}, pp. 326–329. IEEE, 2014.
+
+\bibitem{PP}
+Chenbin Liu, Francis Tsow, Yi Zou, Nongjian Tao.
+\newblock Particle Pollution Estimation Based on Image
+Analysis.
+\newblock In {\em PloS one 2016}. 2016.
+
+\bibitem{Usergen}
+Yucheng Li, Jifei Huang, and Jiebo Luo. 
+\newblock Using user generated online photos to estimate and monitor air pollution in major cities.
+\newblock In {\em Proceedings of the 7th ACM international conference on Internet Multimedia Computing and Service}, pp. 79. ACM, 2015.
+
+\bibitem{PPconv}
+Qirong Bo, Wenwen Yang, Nabin Rijal, Yilin Xie, Jun Feng, Jing Zhang.
+\newblock Particle Pollution Estimation from Images using Convolutional Neural Network and Weather Features.
+\newblock In {\em 2018 IEEE International Conference on Image Processing}. IEEE, 2018.
+
+\bibitem{EAPconv}
+Chao Zhang, Junchi Yan, Changsheng Li, Xiaoguang Rui, Liang Liu, and Rongfang Bie.
+\newblock On Estimating Air Pollution from Photos Using
+Convolutional Neural Network.
+\newblock In {\em Proceedings of the 24th ACM international conference on Multimedia}, pages 297-301. ACM, 2016.
+
+\bibitem{IBAQconv}
+Avijoy Chakma, Ben Vizena, Tingting Cao, Jerry Lin, and Jing Zhang.
+\newblock Image Based Air Quality Analysis Using Deep
+Convolutional Neural Network.
+\newblock In {\em 2017 IEEE International Conference on Image Processing}. IEEE, 2017.
+
+\end{thebibliography}
+
+
+\end{document}
