@@ -1,0 +1,1444 @@
+Epoch: 1, MSE train set: 734.88108902
+Epoch: 1, MSE val set: 660.62654722
+
+Epoch: 2, MSE train set: 568.88126759
+Epoch: 2, MSE val set: 642.17367326
+
+Epoch: 3, MSE train set: 547.59920488
+Epoch: 3, MSE val set: 586.16872371
+
+Epoch: 4, MSE train set: 502.33823326
+Epoch: 4, MSE val set: 562.55320319
+
+Epoch: 5, MSE train set: 500.57605005
+Epoch: 5, MSE val set: 618.55958782
+
+Epoch: 6, MSE train set: 481.19167358
+Epoch: 6, MSE val set: 501.25955770
+
+Epoch: 7, MSE train set: 463.44297074
+Epoch: 7, MSE val set: 474.72967770
+
+Epoch: 8, MSE train set: 431.05966544
+Epoch: 8, MSE val set: 476.32864334
+
+Epoch: 9, MSE train set: 413.07570344
+Epoch: 9, MSE val set: 450.22599270
+
+Epoch: 10, MSE train set: 386.80209318
+Epoch: 10, MSE val set: 474.32429106
+
+Epoch: 11, MSE train set: 398.04323135
+Epoch: 11, MSE val set: 417.50165767
+
+Epoch: 12, MSE train set: 360.09588718
+Epoch: 12, MSE val set: 405.75628915
+
+Epoch: 13, MSE train set: 358.22592527
+Epoch: 13, MSE val set: 438.92422126
+
+Epoch: 14, MSE train set: 340.55054996
+Epoch: 14, MSE val set: 394.53275583
+
+Epoch: 15, MSE train set: 327.11445344
+Epoch: 15, MSE val set: 382.72302518
+
+Epoch: 16, MSE train set: 315.63071767
+Epoch: 16, MSE val set: 466.38849603
+
+Epoch: 17, MSE train set: 309.28078302
+Epoch: 17, MSE val set: 355.61011226
+
+Epoch: 18, MSE train set: 285.49434710
+Epoch: 18, MSE val set: 394.39739953
+
+Epoch: 19, MSE train set: 295.35912941
+Epoch: 19, MSE val set: 405.14212825
+
+Epoch: 20, MSE train set: 273.85242076
+Epoch: 20, MSE val set: 346.55261007
+
+Epoch: 21, MSE train set: 260.86914739
+Epoch: 21, MSE val set: 328.24240440
+
+Epoch: 22, MSE train set: 272.66663397
+Epoch: 22, MSE val set: 395.67613452
+
+Epoch: 23, MSE train set: 235.71063391
+Epoch: 23, MSE val set: 329.88241654
+
+Epoch: 24, MSE train set: 236.19083392
+Epoch: 24, MSE val set: 439.77698324
+
+Epoch: 25, MSE train set: 231.40794551
+Epoch: 25, MSE val set: 350.20523687
+
+Epoch: 26, MSE train set: 230.64235680
+Epoch: 26, MSE val set: 339.23857511
+
+Epoch: 27, MSE train set: 206.60085818
+Epoch: 27, MSE val set: 403.74569258
+
+Epoch: 28, MSE train set: 206.09717308
+Epoch: 28, MSE val set: 369.38779306
+
+Epoch: 29, MSE train set: 185.63537981
+Epoch: 29, MSE val set: 356.73513882
+
+Epoch: 30, MSE train set: 198.65895037
+Epoch: 30, MSE val set: 363.14793829
+
+Epoch: 31, MSE train set: 178.58665715
+Epoch: 31, MSE val set: 335.65235473
+
+Epoch: 32, MSE train set: 185.97420850
+Epoch: 32, MSE val set: 313.27659945
+
+Epoch: 33, MSE train set: 188.91145892
+Epoch: 33, MSE val set: 329.93708399
+
+Epoch: 34, MSE train set: 155.44957561
+Epoch: 34, MSE val set: 323.87675260
+
+Epoch: 35, MSE train set: 141.32293230
+Epoch: 35, MSE val set: 413.38579794
+
+Epoch: 36, MSE train set: 145.69660418
+Epoch: 36, MSE val set: 322.83815394
+
+Epoch: 37, MSE train set: 116.38357031
+Epoch: 37, MSE val set: 323.71664224
+
+Epoch: 38, MSE train set: 135.75300736
+Epoch: 38, MSE val set: 323.26976211
+
+Epoch: 39, MSE train set: 119.70792900
+Epoch: 39, MSE val set: 361.94974384
+
+Epoch: 40, MSE train set: 143.71351281
+Epoch: 40, MSE val set: 389.25410560
+
+Epoch: 41, MSE train set: 121.78859900
+Epoch: 41, MSE val set: 352.38465113
+
+Epoch: 42, MSE train set: 123.37023759
+Epoch: 42, MSE val set: 321.01518132
+
+Epoch: 43, MSE train set: 98.41203723
+Epoch: 43, MSE val set: 334.87169602
+
+Epoch: 44, MSE train set: 92.33198679
+Epoch: 44, MSE val set: 323.10097999
+
+Epoch: 45, MSE train set: 90.16383736
+Epoch: 45, MSE val set: 318.61075389
+
+Epoch: 46, MSE train set: 111.80026925
+Epoch: 46, MSE val set: 375.96767732
+
+Epoch: 47, MSE train set: 114.32228035
+Epoch: 47, MSE val set: 326.45470604
+
+Epoch: 48, MSE train set: 88.60028678
+Epoch: 48, MSE val set: 319.51134494
+
+Epoch: 49, MSE train set: 78.28100452
+Epoch: 49, MSE val set: 338.74823180
+
+Epoch: 50, MSE train set: 78.12375899
+Epoch: 50, MSE val set: 321.26206768
+
+Epoch: 51, MSE train set: 83.62728307
+Epoch: 51, MSE val set: 355.82954079
+
+Epoch: 52, MSE train set: 87.22362671
+Epoch: 52, MSE val set: 360.34237653
+
+Epoch: 53, MSE train set: 83.16533764
+Epoch: 53, MSE val set: 349.72956923
+
+Epoch: 54, MSE train set: 112.36480740
+Epoch: 54, MSE val set: 400.03706183
+
+Epoch: 55, MSE train set: 78.31393903
+Epoch: 55, MSE val set: 340.35804428
+
+Epoch: 56, MSE train set: 64.22939415
+Epoch: 56, MSE val set: 319.50270215
+
+Epoch: 57, MSE train set: 52.32022818
+Epoch: 57, MSE val set: 331.16552580
+
+Epoch: 58, MSE train set: 58.49327885
+Epoch: 58, MSE val set: 336.35936006
+
+Epoch: 59, MSE train set: 56.84820914
+Epoch: 59, MSE val set: 301.90093239
+
+Epoch: 60, MSE train set: 53.89353341
+Epoch: 60, MSE val set: 327.13000251
+
+Epoch: 61, MSE train set: 50.11492422
+Epoch: 61, MSE val set: 354.30091686
+
+Epoch: 62, MSE train set: 53.99120688
+Epoch: 62, MSE val set: 328.80835376
+
+Epoch: 63, MSE train set: 63.99417625
+Epoch: 63, MSE val set: 341.21594058
+
+Epoch: 64, MSE train set: 60.23584918
+Epoch: 64, MSE val set: 316.99924159
+
+Epoch: 65, MSE train set: 47.43840904
+Epoch: 65, MSE val set: 339.00053599
+
+Epoch: 66, MSE train set: 44.61175899
+Epoch: 66, MSE val set: 323.44971276
+
+Epoch: 67, MSE train set: 58.81913689
+Epoch: 67, MSE val set: 339.98210733
+
+Epoch: 68, MSE train set: 46.13837725
+Epoch: 68, MSE val set: 330.28815570
+
+Epoch: 69, MSE train set: 52.24531814
+Epoch: 69, MSE val set: 315.27637153
+
+Epoch: 70, MSE train set: 51.14162705
+Epoch: 70, MSE val set: 327.27500381
+
+Epoch: 71, MSE train set: 49.04212322
+Epoch: 71, MSE val set: 313.97619141
+
+Epoch: 72, MSE train set: 30.70043938
+Epoch: 72, MSE val set: 325.51450109
+
+Epoch: 73, MSE train set: 30.81196647
+Epoch: 73, MSE val set: 314.75477017
+
+Epoch: 74, MSE train set: 34.18373359
+Epoch: 74, MSE val set: 321.00084244
+
+Epoch: 75, MSE train set: 40.15512889
+Epoch: 75, MSE val set: 323.96833245
+
+Epoch: 76, MSE train set: 33.40193787
+Epoch: 76, MSE val set: 307.54935952
+
+Epoch: 77, MSE train set: 33.03592768
+Epoch: 77, MSE val set: 365.77982739
+
+Epoch: 78, MSE train set: 52.96173208
+Epoch: 78, MSE val set: 329.40426816
+
+Epoch: 79, MSE train set: 40.07552911
+Epoch: 79, MSE val set: 311.91763447
+
+Epoch: 80, MSE train set: 28.00264329
+Epoch: 80, MSE val set: 337.03958752
+
+Epoch: 81, MSE train set: 29.71142674
+Epoch: 81, MSE val set: 323.82443627
+
+Epoch: 82, MSE train set: 27.81082418
+Epoch: 82, MSE val set: 333.47507603
+
+Epoch: 83, MSE train set: 28.98080905
+Epoch: 83, MSE val set: 307.35040600
+
+Epoch: 84, MSE train set: 48.18241021
+Epoch: 84, MSE val set: 319.52828195
+
+Epoch: 85, MSE train set: 40.18873964
+Epoch: 85, MSE val set: 309.76910952
+
+Epoch: 86, MSE train set: 23.61864551
+Epoch: 86, MSE val set: 289.13928638
+
+Epoch: 87, MSE train set: 22.09487205
+Epoch: 87, MSE val set: 299.77066062
+
+Epoch: 88, MSE train set: 20.49242292
+Epoch: 88, MSE val set: 301.28389339
+
+Epoch: 89, MSE train set: 24.32813942
+Epoch: 89, MSE val set: 308.96701805
+
+Epoch: 90, MSE train set: 29.99163149
+Epoch: 90, MSE val set: 291.27352840
+
+Epoch: 91, MSE train set: 34.69685246
+Epoch: 91, MSE val set: 309.35391874
+
+Epoch: 92, MSE train set: 31.29775727
+Epoch: 92, MSE val set: 293.36048391
+
+Epoch: 93, MSE train set: 34.60592315
+Epoch: 93, MSE val set: 336.48816633
+
+Epoch: 94, MSE train set: 47.86064148
+Epoch: 94, MSE val set: 356.02377438
+
+Epoch: 95, MSE train set: 67.45753124
+Epoch: 95, MSE val set: 398.80233085
+
+Epoch: 96, MSE train set: 65.47065847
+Epoch: 96, MSE val set: 314.22145077
+
+Epoch: 97, MSE train set: 31.07738375
+Epoch: 97, MSE val set: 297.18844041
+
+Epoch: 98, MSE train set: 20.05464433
+Epoch: 98, MSE val set: 295.62959802
+
+Epoch: 99, MSE train set: 11.42426379
+Epoch: 99, MSE val set: 282.31640017
+
+Epoch: 100, MSE train set: 9.70813815
+Epoch: 100, MSE val set: 288.49280802
+
+Epoch: 101, MSE train set: 8.78421376
+Epoch: 101, MSE val set: 287.13738691
+
+Epoch: 102, MSE train set: 9.78556291
+Epoch: 102, MSE val set: 293.78042726
+
+Epoch: 103, MSE train set: 16.85343207
+Epoch: 103, MSE val set: 287.35707739
+
+Epoch: 104, MSE train set: 24.14278774
+Epoch: 104, MSE val set: 286.72116960
+
+Epoch: 105, MSE train set: 22.53009747
+Epoch: 105, MSE val set: 283.64334621
+
+Epoch: 106, MSE train set: 37.47905306
+Epoch: 106, MSE val set: 285.92605683
+
+Epoch: 107, MSE train set: 34.38716250
+Epoch: 107, MSE val set: 291.37913635
+
+Epoch: 108, MSE train set: 16.22824433
+Epoch: 108, MSE val set: 282.93619495
+
+Epoch: 109, MSE train set: 13.46662201
+Epoch: 109, MSE val set: 305.36561563
+
+Epoch: 110, MSE train set: 18.86233010
+Epoch: 110, MSE val set: 297.26633359
+
+Epoch: 111, MSE train set: 17.07118952
+Epoch: 111, MSE val set: 284.98476435
+
+Epoch: 112, MSE train set: 22.68066680
+Epoch: 112, MSE val set: 289.52167051
+
+Epoch: 113, MSE train set: 27.52905241
+Epoch: 113, MSE val set: 285.98505186
+
+Epoch: 114, MSE train set: 19.01106871
+Epoch: 114, MSE val set: 301.19526518
+
+Epoch: 115, MSE train set: 12.58068700
+Epoch: 115, MSE val set: 291.45770023
+
+Epoch: 116, MSE train set: 11.47912525
+Epoch: 116, MSE val set: 297.44104459
+
+Epoch: 117, MSE train set: 16.09039698
+Epoch: 117, MSE val set: 281.83540734
+
+Epoch: 118, MSE train set: 23.23426040
+Epoch: 118, MSE val set: 297.58656004
+
+Epoch: 119, MSE train set: 56.65011953
+Epoch: 119, MSE val set: 307.85381987
+
+Epoch: 120, MSE train set: 27.04995118
+Epoch: 120, MSE val set: 294.37716926
+
+Epoch: 121, MSE train set: 25.89500859
+Epoch: 121, MSE val set: 300.38438216
+
+Epoch: 122, MSE train set: 18.41476648
+Epoch: 122, MSE val set: 280.52095557
+
+Epoch: 123, MSE train set: 14.52397937
+Epoch: 123, MSE val set: 284.16367867
+
+Epoch: 124, MSE train set: 11.25623664
+Epoch: 124, MSE val set: 283.85388260
+
+Epoch: 125, MSE train set: 16.93118545
+Epoch: 125, MSE val set: 272.74200828
+
+Epoch: 126, MSE train set: 35.55613920
+Epoch: 126, MSE val set: 307.09685131
+
+Epoch: 127, MSE train set: 29.91866254
+Epoch: 127, MSE val set: 294.85835189
+
+Epoch: 128, MSE train set: 24.26640789
+Epoch: 128, MSE val set: 300.17348676
+
+Epoch: 129, MSE train set: 17.16846351
+Epoch: 129, MSE val set: 294.11705707
+
+Epoch: 130, MSE train set: 15.35679958
+Epoch: 130, MSE val set: 293.84719842
+
+Epoch: 131, MSE train set: 11.00177901
+Epoch: 131, MSE val set: 296.62500809
+
+Epoch: 132, MSE train set: 9.75552909
+Epoch: 132, MSE val set: 280.54499958
+
+Epoch: 133, MSE train set: 13.81950787
+Epoch: 133, MSE val set: 295.30870735
+
+Epoch: 134, MSE train set: 16.77852806
+Epoch: 134, MSE val set: 290.01276678
+
+Epoch: 135, MSE train set: 18.29401866
+Epoch: 135, MSE val set: 294.08378362
+
+Epoch: 136, MSE train set: 15.49536566
+Epoch: 136, MSE val set: 284.86060174
+
+Epoch: 137, MSE train set: 9.89862153
+Epoch: 137, MSE val set: 292.86163369
+
+Epoch: 138, MSE train set: 10.61432357
+Epoch: 138, MSE val set: 293.28140318
+
+Epoch: 139, MSE train set: 9.43191011
+Epoch: 139, MSE val set: 304.85362922
+
+Epoch: 140, MSE train set: 13.01487668
+Epoch: 140, MSE val set: 286.10628789
+
+Epoch: 141, MSE train set: 28.76955092
+Epoch: 141, MSE val set: 284.76090363
+
+Epoch: 142, MSE train set: 22.21086445
+Epoch: 142, MSE val set: 291.13046740
+
+Epoch: 143, MSE train set: 33.54447152
+Epoch: 143, MSE val set: 293.60373934
+
+Epoch: 144, MSE train set: 26.77616616
+Epoch: 144, MSE val set: 299.16987621
+
+Epoch: 145, MSE train set: 14.74536357
+Epoch: 145, MSE val set: 273.34189633
+
+Epoch: 146, MSE train set: 9.02502622
+Epoch: 146, MSE val set: 279.82149382
+
+Epoch: 147, MSE train set: 6.18335880
+Epoch: 147, MSE val set: 271.71624103
+
+Epoch: 148, MSE train set: 5.33695609
+Epoch: 148, MSE val set: 276.73979636
+
+Epoch: 149, MSE train set: 6.25912332
+Epoch: 149, MSE val set: 279.57541909
+
+Epoch: 150, MSE train set: 9.45810519
+Epoch: 150, MSE val set: 284.88009879
+
+Epoch: 151, MSE train set: 14.36917293
+Epoch: 151, MSE val set: 286.88943860
+
+Epoch: 152, MSE train set: 14.68549141
+Epoch: 152, MSE val set: 321.78161220
+
+Epoch: 153, MSE train set: 18.96662470
+Epoch: 153, MSE val set: 291.54404347
+
+Epoch: 154, MSE train set: 40.89708605
+Epoch: 154, MSE val set: 313.62479427
+
+Epoch: 155, MSE train set: 58.21615723
+Epoch: 155, MSE val set: 275.40661155
+
+Epoch: 156, MSE train set: 14.54260685
+Epoch: 156, MSE val set: 282.49793370
+
+Epoch: 157, MSE train set: 7.14053932
+Epoch: 157, MSE val set: 261.97728141
+
+Epoch: 158, MSE train set: 5.97030575
+Epoch: 158, MSE val set: 269.29528224
+
+Epoch: 159, MSE train set: 5.10207440
+Epoch: 159, MSE val set: 266.91533564
+
+Epoch: 160, MSE train set: 5.72916152
+Epoch: 160, MSE val set: 266.01188714
+
+Epoch: 161, MSE train set: 5.67722931
+Epoch: 161, MSE val set: 266.53867376
+
+Epoch: 162, MSE train set: 5.56276305
+Epoch: 162, MSE val set: 269.42405259
+
+Epoch: 163, MSE train set: 6.55389420
+Epoch: 163, MSE val set: 267.73266253
+
+Epoch: 164, MSE train set: 8.16212600
+Epoch: 164, MSE val set: 297.57168600
+
+Epoch: 165, MSE train set: 18.83931006
+Epoch: 165, MSE val set: 282.76669369
+
+Epoch: 166, MSE train set: 20.09422769
+Epoch: 166, MSE val set: 276.78116153
+
+Epoch: 167, MSE train set: 16.76704852
+Epoch: 167, MSE val set: 274.78504464
+
+Epoch: 168, MSE train set: 19.03637959
+Epoch: 168, MSE val set: 277.88993599
+
+Epoch: 169, MSE train set: 10.50216109
+Epoch: 169, MSE val set: 282.02433441
+
+Epoch: 170, MSE train set: 9.02105368
+Epoch: 170, MSE val set: 280.27669304
+
+Epoch: 171, MSE train set: 9.10267989
+Epoch: 171, MSE val set: 281.46318583
+
+Epoch: 172, MSE train set: 10.23447518
+Epoch: 172, MSE val set: 272.06871588
+
+Epoch: 173, MSE train set: 10.26271796
+Epoch: 173, MSE val set: 268.27177275
+
+Epoch: 174, MSE train set: 23.51839531
+Epoch: 174, MSE val set: 275.17444970
+
+Epoch: 175, MSE train set: 14.26491185
+Epoch: 175, MSE val set: 276.59270230
+
+Epoch: 176, MSE train set: 13.66031184
+Epoch: 176, MSE val set: 287.07061373
+
+Epoch: 177, MSE train set: 21.20595160
+Epoch: 177, MSE val set: 286.00656731
+
+Epoch: 178, MSE train set: 11.33676538
+Epoch: 178, MSE val set: 256.72191580
+
+Epoch: 179, MSE train set: 7.86600130
+Epoch: 179, MSE val set: 273.85513325
+
+Epoch: 180, MSE train set: 6.11419178
+Epoch: 180, MSE val set: 269.85382896
+
+Epoch: 181, MSE train set: 5.10340323
+Epoch: 181, MSE val set: 270.61641734
+
+Epoch: 182, MSE train set: 3.98178384
+Epoch: 182, MSE val set: 265.41291650
+
+Epoch: 183, MSE train set: 5.33968705
+Epoch: 183, MSE val set: 274.02644386
+
+Epoch: 184, MSE train set: 6.41656396
+Epoch: 184, MSE val set: 274.10134382
+
+Epoch: 185, MSE train set: 8.71192688
+Epoch: 185, MSE val set: 281.71734331
+
+Epoch: 186, MSE train set: 31.05409012
+Epoch: 186, MSE val set: 285.65270117
+
+Epoch: 187, MSE train set: 27.06401320
+Epoch: 187, MSE val set: 281.39724769
+
+Epoch: 188, MSE train set: 15.29075275
+Epoch: 188, MSE val set: 270.95785611
+
+Epoch: 189, MSE train set: 13.50737930
+Epoch: 189, MSE val set: 264.38001094
+
+Epoch: 190, MSE train set: 11.77796386
+Epoch: 190, MSE val set: 266.08862323
+
+Epoch: 191, MSE train set: 6.59889416
+Epoch: 191, MSE val set: 268.08413374
+
+Epoch: 192, MSE train set: 3.33179073
+Epoch: 192, MSE val set: 268.53226745
+
+Epoch: 193, MSE train set: 3.16731252
+Epoch: 193, MSE val set: 263.17845332
+
+Epoch: 194, MSE train set: 3.33403082
+Epoch: 194, MSE val set: 272.75317757
+
+Epoch: 195, MSE train set: 5.24958130
+Epoch: 195, MSE val set: 266.30869247
+
+Epoch: 196, MSE train set: 8.56048570
+Epoch: 196, MSE val set: 270.50947416
+
+Epoch: 197, MSE train set: 18.26005066
+Epoch: 197, MSE val set: 306.45673674
+
+Epoch: 198, MSE train set: 45.62140636
+Epoch: 198, MSE val set: 275.11963672
+
+Epoch: 199, MSE train set: 19.37867332
+Epoch: 199, MSE val set: 289.01474548
+
+Epoch: 200, MSE train set: 11.19766673
+Epoch: 200, MSE val set: 276.23484063
+
+Epoch: 201, MSE train set: 7.09060667
+Epoch: 201, MSE val set: 283.09914588
+
+Epoch: 202, MSE train set: 3.56262013
+Epoch: 202, MSE val set: 274.65516951
+
+Epoch: 203, MSE train set: 2.25316715
+Epoch: 203, MSE val set: 269.56881961
+
+Epoch: 204, MSE train set: 2.38527755
+Epoch: 204, MSE val set: 264.01411636
+
+Epoch: 205, MSE train set: 2.27407669
+Epoch: 205, MSE val set: 269.95055620
+
+Epoch: 206, MSE train set: 3.77731027
+Epoch: 206, MSE val set: 262.77655063
+
+Epoch: 207, MSE train set: 10.02608966
+Epoch: 207, MSE val set: 277.53199319
+
+Epoch: 208, MSE train set: 10.38300828
+Epoch: 208, MSE val set: 277.53338443
+
+Epoch: 209, MSE train set: 21.97406205
+Epoch: 209, MSE val set: 300.21677589
+
+Epoch: 210, MSE train set: 31.11210693
+Epoch: 210, MSE val set: 281.93069784
+
+Epoch: 211, MSE train set: 25.85412017
+Epoch: 211, MSE val set: 270.48720797
+
+Epoch: 212, MSE train set: 13.33810371
+Epoch: 212, MSE val set: 276.73384726
+
+Epoch: 213, MSE train set: 6.76745121
+Epoch: 213, MSE val set: 265.84881682
+
+Epoch: 214, MSE train set: 4.26004954
+Epoch: 214, MSE val set: 267.82996394
+
+Epoch: 215, MSE train set: 2.98527696
+Epoch: 215, MSE val set: 261.58617251
+
+Epoch: 216, MSE train set: 2.58345989
+Epoch: 216, MSE val set: 256.76362984
+
+Epoch: 217, MSE train set: 3.61109354
+Epoch: 217, MSE val set: 265.84580635
+
+Epoch: 218, MSE train set: 4.08785685
+Epoch: 218, MSE val set: 263.07706895
+
+Epoch: 219, MSE train set: 4.90437876
+Epoch: 219, MSE val set: 270.67866057
+
+Epoch: 220, MSE train set: 12.99346237
+Epoch: 220, MSE val set: 273.33735164
+
+Epoch: 221, MSE train set: 16.56082001
+Epoch: 221, MSE val set: 270.25579940
+
+Epoch: 222, MSE train set: 11.13148413
+Epoch: 222, MSE val set: 273.03596367
+
+Epoch: 223, MSE train set: 12.92148200
+Epoch: 223, MSE val set: 263.06908404
+
+Epoch: 224, MSE train set: 8.25213492
+Epoch: 224, MSE val set: 262.14775247
+
+Epoch: 225, MSE train set: 7.17248329
+Epoch: 225, MSE val set: 273.94683414
+
+Epoch: 226, MSE train set: 4.71113160
+Epoch: 226, MSE val set: 264.79715183
+
+Epoch: 227, MSE train set: 3.71728183
+Epoch: 227, MSE val set: 269.47452617
+
+Epoch: 228, MSE train set: 6.92522010
+Epoch: 228, MSE val set: 260.48111504
+
+Epoch: 229, MSE train set: 9.09946960
+Epoch: 229, MSE val set: 258.46521902
+
+Epoch: 230, MSE train set: 12.73876127
+Epoch: 230, MSE val set: 281.36040946
+
+Epoch: 231, MSE train set: 12.29453152
+Epoch: 231, MSE val set: 277.43189596
+
+Epoch: 232, MSE train set: 9.54243321
+Epoch: 232, MSE val set: 262.07965547
+
+Epoch: 233, MSE train set: 10.04287521
+Epoch: 233, MSE val set: 264.93959940
+
+Epoch: 234, MSE train set: 8.70714926
+Epoch: 234, MSE val set: 268.81460272
+
+Epoch: 235, MSE train set: 6.89130551
+Epoch: 235, MSE val set: 271.70120600
+
+Epoch: 236, MSE train set: 6.73264189
+Epoch: 236, MSE val set: 256.17681452
+
+Epoch: 237, MSE train set: 12.47310189
+Epoch: 237, MSE val set: 275.15438779
+
+Epoch: 238, MSE train set: 10.86949544
+Epoch: 238, MSE val set: 283.30873589
+
+Epoch: 239, MSE train set: 7.15534594
+Epoch: 239, MSE val set: 271.71623049
+
+Epoch: 240, MSE train set: 8.26138756
+Epoch: 240, MSE val set: 270.61140678
+
+Epoch: 241, MSE train set: 7.30935727
+Epoch: 241, MSE val set: 266.91173412
+
+Epoch: 242, MSE train set: 7.43772666
+Epoch: 242, MSE val set: 260.74747775
+
+Epoch: 243, MSE train set: 8.48611914
+Epoch: 243, MSE val set: 265.43357099
+
+Epoch: 244, MSE train set: 8.28455763
+Epoch: 244, MSE val set: 255.32987368
+
+Epoch: 245, MSE train set: 5.54114629
+Epoch: 245, MSE val set: 271.26354785
+
+Epoch: 246, MSE train set: 6.86476987
+Epoch: 246, MSE val set: 272.01807105
+
+Epoch: 247, MSE train set: 7.53040251
+Epoch: 247, MSE val set: 281.52007193
+
+Epoch: 248, MSE train set: 16.76869303
+Epoch: 248, MSE val set: 267.47650860
+
+Epoch: 249, MSE train set: 7.61436343
+Epoch: 249, MSE val set: 265.80513992
+
+Epoch: 250, MSE train set: 4.79413986
+Epoch: 250, MSE val set: 266.60819762
+
+Epoch: 251, MSE train set: 6.20831982
+Epoch: 251, MSE val set: 271.18491689
+
+Epoch: 252, MSE train set: 8.33172704
+Epoch: 252, MSE val set: 272.79405378
+
+Epoch: 253, MSE train set: 7.15088740
+Epoch: 253, MSE val set: 267.20251533
+
+Epoch: 254, MSE train set: 11.79357741
+Epoch: 254, MSE val set: 270.33179622
+
+Epoch: 255, MSE train set: 16.20705678
+Epoch: 255, MSE val set: 280.76961849
+
+Epoch: 256, MSE train set: 7.20435729
+Epoch: 256, MSE val set: 266.10638996
+
+Epoch: 257, MSE train set: 4.70025476
+Epoch: 257, MSE val set: 270.13563773
+
+Epoch: 258, MSE train set: 6.46758251
+Epoch: 258, MSE val set: 270.54787319
+
+Epoch: 259, MSE train set: 9.95333698
+Epoch: 259, MSE val set: 272.86455124
+
+Epoch: 260, MSE train set: 10.71434860
+Epoch: 260, MSE val set: 260.81249651
+
+Epoch: 261, MSE train set: 5.48692221
+Epoch: 261, MSE val set: 268.73445072
+
+Epoch: 262, MSE train set: 4.07531940
+Epoch: 262, MSE val set: 270.70587243
+
+Epoch: 263, MSE train set: 4.07530699
+Epoch: 263, MSE val set: 273.90417148
+
+Epoch: 264, MSE train set: 8.88506244
+Epoch: 264, MSE val set: 269.50519138
+
+Epoch: 265, MSE train set: 6.49557456
+Epoch: 265, MSE val set: 288.18548743
+
+Epoch: 266, MSE train set: 18.22257570
+Epoch: 266, MSE val set: 256.73178460
+
+Epoch: 267, MSE train set: 12.34217917
+Epoch: 267, MSE val set: 287.06441781
+
+Epoch: 268, MSE train set: 6.73872864
+Epoch: 268, MSE val set: 263.37598484
+
+Epoch: 269, MSE train set: 3.75977692
+Epoch: 269, MSE val set: 269.98561739
+
+Epoch: 270, MSE train set: 3.05794127
+Epoch: 270, MSE val set: 265.91768233
+
+Epoch: 271, MSE train set: 4.51321647
+Epoch: 271, MSE val set: 276.23062788
+
+Epoch: 272, MSE train set: 4.13913558
+Epoch: 272, MSE val set: 267.92234613
+
+Epoch: 273, MSE train set: 8.19545747
+Epoch: 273, MSE val set: 271.19293014
+
+Epoch: 274, MSE train set: 9.66450660
+Epoch: 274, MSE val set: 264.52298842
+
+Epoch: 275, MSE train set: 8.71054559
+Epoch: 275, MSE val set: 282.04712605
+
+Epoch: 276, MSE train set: 17.56539629
+Epoch: 276, MSE val set: 266.07027154
+
+Epoch: 277, MSE train set: 5.91906414
+Epoch: 277, MSE val set: 270.88897157
+
+Epoch: 278, MSE train set: 4.00464415
+Epoch: 278, MSE val set: 287.72227522
+
+Epoch: 279, MSE train set: 3.69866068
+Epoch: 279, MSE val set: 272.34528066
+
+Epoch: 280, MSE train set: 4.13926657
+Epoch: 280, MSE val set: 264.11020781
+
+Epoch: 281, MSE train set: 5.26879741
+Epoch: 281, MSE val set: 266.46474981
+
+Epoch: 282, MSE train set: 4.10401648
+Epoch: 282, MSE val set: 266.33420994
+
+Epoch: 283, MSE train set: 3.23742572
+Epoch: 283, MSE val set: 270.40032578
+
+Epoch: 284, MSE train set: 5.17639696
+Epoch: 284, MSE val set: 276.68955274
+
+Epoch: 285, MSE train set: 13.18655166
+Epoch: 285, MSE val set: 282.44957903
+
+Epoch: 286, MSE train set: 9.94857437
+Epoch: 286, MSE val set: 294.23760682
+
+Epoch: 287, MSE train set: 12.01120210
+Epoch: 287, MSE val set: 265.93811697
+
+Epoch: 288, MSE train set: 8.56656804
+Epoch: 288, MSE val set: 265.66747130
+
+Epoch: 289, MSE train set: 4.16746268
+Epoch: 289, MSE val set: 268.88357245
+
+Epoch: 290, MSE train set: 3.69864620
+Epoch: 290, MSE val set: 263.23089510
+
+Epoch: 291, MSE train set: 3.59261839
+Epoch: 291, MSE val set: 262.87849306
+
+Epoch: 292, MSE train set: 3.73963300
+Epoch: 292, MSE val set: 266.14972172
+
+Epoch: 293, MSE train set: 4.73252867
+Epoch: 293, MSE val set: 272.63230543
+
+Epoch: 294, MSE train set: 4.26083361
+Epoch: 294, MSE val set: 246.71665062
+
+Epoch: 295, MSE train set: 6.48828688
+Epoch: 295, MSE val set: 260.09028808
+
+Epoch: 296, MSE train set: 8.72072445
+Epoch: 296, MSE val set: 290.49797586
+
+Epoch: 297, MSE train set: 15.42884850
+Epoch: 297, MSE val set: 278.46561869
+
+Epoch: 298, MSE train set: 8.20550028
+Epoch: 298, MSE val set: 255.62952747
+
+Epoch: 299, MSE train set: 6.00233502
+Epoch: 299, MSE val set: 267.50960118
+
+Epoch: 300, MSE train set: 3.97167940
+Epoch: 300, MSE val set: 269.15154594
+
+Epoch: 301, MSE train set: 2.82593995
+Epoch: 301, MSE val set: 261.10244307
+
+Epoch: 302, MSE train set: 3.46168935
+Epoch: 302, MSE val set: 262.95814733
+
+Epoch: 303, MSE train set: 7.03210384
+Epoch: 303, MSE val set: 278.49167462
+
+Epoch: 304, MSE train set: 5.65354111
+Epoch: 304, MSE val set: 273.16826641
+
+Epoch: 305, MSE train set: 8.41562762
+Epoch: 305, MSE val set: 263.32250588
+
+Epoch: 306, MSE train set: 7.02647495
+Epoch: 306, MSE val set: 286.92264205
+
+Epoch: 307, MSE train set: 5.78901003
+Epoch: 307, MSE val set: 264.62539523
+
+Epoch: 308, MSE train set: 4.54325180
+Epoch: 308, MSE val set: 268.33732149
+
+Epoch: 309, MSE train set: 5.83929380
+Epoch: 309, MSE val set: 275.75391163
+
+Epoch: 310, MSE train set: 13.54020196
+Epoch: 310, MSE val set: 279.22152833
+
+Epoch: 311, MSE train set: 12.48609124
+Epoch: 311, MSE val set: 264.35638107
+
+Epoch: 312, MSE train set: 7.35494892
+Epoch: 312, MSE val set: 257.30166030
+
+Epoch: 313, MSE train set: 4.29190893
+Epoch: 313, MSE val set: 259.59804624
+
+Epoch: 314, MSE train set: 6.46957353
+Epoch: 314, MSE val set: 275.86059759
+
+Epoch: 315, MSE train set: 13.36659531
+Epoch: 315, MSE val set: 266.88019548
+
+Epoch: 316, MSE train set: 6.87011077
+Epoch: 316, MSE val set: 262.10500061
+
+Epoch: 317, MSE train set: 4.34364431
+Epoch: 317, MSE val set: 265.86722277
+
+Epoch: 318, MSE train set: 5.02182969
+Epoch: 318, MSE val set: 269.53034616
+
+Epoch: 319, MSE train set: 3.36463770
+Epoch: 319, MSE val set: 259.76522989
+
+Epoch: 320, MSE train set: 2.64268152
+Epoch: 320, MSE val set: 259.27988030
+
+Epoch: 321, MSE train set: 2.36346823
+Epoch: 321, MSE val set: 262.66398930
+
+Epoch: 322, MSE train set: 2.25387980
+Epoch: 322, MSE val set: 261.52432807
+
+Epoch: 323, MSE train set: 8.07667475
+Epoch: 323, MSE val set: 275.84788307
+
+Epoch: 324, MSE train set: 8.97163711
+Epoch: 324, MSE val set: 272.90835512
+
+Epoch: 325, MSE train set: 10.44356422
+Epoch: 325, MSE val set: 262.95588415
+
+Epoch: 326, MSE train set: 8.17232320
+Epoch: 326, MSE val set: 260.02788395
+
+Epoch: 327, MSE train set: 5.46275741
+Epoch: 327, MSE val set: 267.03634887
+
+Epoch: 328, MSE train set: 5.99428347
+Epoch: 328, MSE val set: 275.88981341
+
+Epoch: 329, MSE train set: 20.72998320
+Epoch: 329, MSE val set: 258.40691367
+
+Epoch: 330, MSE train set: 7.71246609
+Epoch: 330, MSE val set: 255.10882208
+
+Epoch: 331, MSE train set: 4.87291755
+Epoch: 331, MSE val set: 258.88093342
+
+Epoch: 332, MSE train set: 3.21743276
+Epoch: 332, MSE val set: 258.83158100
+
+Epoch: 333, MSE train set: 2.45638841
+Epoch: 333, MSE val set: 257.23295956
+
+Epoch: 334, MSE train set: 2.56021211
+Epoch: 334, MSE val set: 252.84038914
+
+Epoch: 335, MSE train set: 2.27921490
+Epoch: 335, MSE val set: 257.05447517
+
+Epoch: 336, MSE train set: 3.56961123
+Epoch: 336, MSE val set: 256.84505980
+
+Epoch: 337, MSE train set: 2.78870064
+Epoch: 337, MSE val set: 253.84420979
+
+Epoch: 338, MSE train set: 3.58103873
+Epoch: 338, MSE val set: 260.05577036
+
+Epoch: 339, MSE train set: 5.51872627
+Epoch: 339, MSE val set: 260.26547777
+
+Epoch: 340, MSE train set: 7.95681960
+Epoch: 340, MSE val set: 256.85958298
+
+Epoch: 341, MSE train set: 7.97686730
+Epoch: 341, MSE val set: 260.14499566
+
+Epoch: 342, MSE train set: 9.63327305
+Epoch: 342, MSE val set: 278.78251291
+
+Epoch: 343, MSE train set: 8.76847016
+Epoch: 343, MSE val set: 283.81343786
+
+Epoch: 344, MSE train set: 5.33813917
+Epoch: 344, MSE val set: 264.77349034
+
+Epoch: 345, MSE train set: 3.13824090
+Epoch: 345, MSE val set: 262.38124223
+
+Epoch: 346, MSE train set: 4.32922803
+Epoch: 346, MSE val set: 263.61059839
+
+Epoch: 347, MSE train set: 2.90168422
+Epoch: 347, MSE val set: 267.86114552
+
+Epoch: 348, MSE train set: 2.93456049
+Epoch: 348, MSE val set: 261.38172502
+
+Epoch: 349, MSE train set: 2.73569513
+Epoch: 349, MSE val set: 267.73651690
+
+Epoch: 350, MSE train set: 3.80878682
+Epoch: 350, MSE val set: 254.02746315
+
+Epoch: 351, MSE train set: 4.29097727
+Epoch: 351, MSE val set: 265.76967105
+
+Epoch: 352, MSE train set: 5.18062432
+Epoch: 352, MSE val set: 271.08033528
+
+Epoch: 353, MSE train set: 6.64769887
+Epoch: 353, MSE val set: 263.29658612
+
+Epoch: 354, MSE train set: 10.49826184
+Epoch: 354, MSE val set: 273.11362243
+
+Epoch: 355, MSE train set: 13.30060329
+Epoch: 355, MSE val set: 266.07982236
+
+Epoch: 356, MSE train set: 5.39292526
+Epoch: 356, MSE val set: 272.18263807
+
+Epoch: 357, MSE train set: 2.35975438
+Epoch: 357, MSE val set: 263.15577798
+
+Epoch: 358, MSE train set: 3.20287349
+Epoch: 358, MSE val set: 255.64968372
+
+Epoch: 359, MSE train set: 3.36528590
+Epoch: 359, MSE val set: 273.36865260
+
+Epoch: 360, MSE train set: 9.82253861
+Epoch: 360, MSE val set: 270.33067937
+
+Epoch: 361, MSE train set: 7.01175661
+Epoch: 361, MSE val set: 271.12536777
+
+Epoch: 362, MSE train set: 6.31727054
+Epoch: 362, MSE val set: 261.89845027
+
+Epoch: 363, MSE train set: 6.15651565
+Epoch: 363, MSE val set: 264.66415414
+
+Epoch: 364, MSE train set: 3.42695085
+Epoch: 364, MSE val set: 263.48183761
+
+Epoch: 365, MSE train set: 2.73795368
+Epoch: 365, MSE val set: 269.15253506
+
+Epoch: 366, MSE train set: 3.52700688
+Epoch: 366, MSE val set: 268.40584170
+
+Epoch: 367, MSE train set: 4.86543289
+Epoch: 367, MSE val set: 263.80363668
+
+Epoch: 368, MSE train set: 8.74020016
+Epoch: 368, MSE val set: 260.06250061
+
+Epoch: 369, MSE train set: 5.30667117
+Epoch: 369, MSE val set: 258.19111354
+
+Epoch: 370, MSE train set: 5.25478388
+Epoch: 370, MSE val set: 271.07960667
+
+Epoch: 371, MSE train set: 4.18182936
+Epoch: 371, MSE val set: 273.02543703
+
+Epoch: 372, MSE train set: 5.17027779
+Epoch: 372, MSE val set: 256.03477464
+
+Epoch: 373, MSE train set: 7.09412462
+Epoch: 373, MSE val set: 260.63457224
+
+Epoch: 374, MSE train set: 5.24737777
+Epoch: 374, MSE val set: 256.57410332
+
+Epoch: 375, MSE train set: 4.94992617
+Epoch: 375, MSE val set: 256.96848477
+
+Epoch: 376, MSE train set: 4.59269913
+Epoch: 376, MSE val set: 257.86733516
+
+Epoch: 377, MSE train set: 2.46334200
+Epoch: 377, MSE val set: 261.50516218
+
+Epoch: 378, MSE train set: 2.94992358
+Epoch: 378, MSE val set: 289.00318342
+
+Epoch: 379, MSE train set: 3.74976803
+Epoch: 379, MSE val set: 259.49571780
+
+Epoch: 380, MSE train set: 4.81058188
+Epoch: 380, MSE val set: 266.14988785
+
+Epoch: 381, MSE train set: 4.62932922
+Epoch: 381, MSE val set: 262.09220699
+
+Epoch: 382, MSE train set: 5.22417673
+Epoch: 382, MSE val set: 257.53540463
+
+Epoch: 383, MSE train set: 4.73833557
+Epoch: 383, MSE val set: 274.50284100
+
+Epoch: 384, MSE train set: 5.21250924
+Epoch: 384, MSE val set: 276.12254270
+
+Epoch: 385, MSE train set: 3.49444612
+Epoch: 385, MSE val set: 263.74237016
+
+Epoch: 386, MSE train set: 3.69838956
+Epoch: 386, MSE val set: 259.22658094
+
+Epoch: 387, MSE train set: 3.49168635
+Epoch: 387, MSE val set: 273.49796474
+
+Epoch: 388, MSE train set: 5.03406776
+Epoch: 388, MSE val set: 258.60002401
+
+Epoch: 389, MSE train set: 7.00708174
+Epoch: 389, MSE val set: 271.39314847
+
+Epoch: 390, MSE train set: 5.64467083
+Epoch: 390, MSE val set: 261.86307559
+
+Epoch: 391, MSE train set: 3.35888655
+Epoch: 391, MSE val set: 260.03234493
+
+Epoch: 392, MSE train set: 4.52725249
+Epoch: 392, MSE val set: 263.51106476
+
+Epoch: 393, MSE train set: 5.21460830
+Epoch: 393, MSE val set: 271.90618285
+
+Epoch: 394, MSE train set: 6.10883241
+Epoch: 394, MSE val set: 266.48569907
+
+Epoch: 395, MSE train set: 4.05090075
+Epoch: 395, MSE val set: 266.62010951
+
+Epoch: 396, MSE train set: 4.77837756
+Epoch: 396, MSE val set: 260.10087186
+
+Epoch: 397, MSE train set: 3.23461660
+Epoch: 397, MSE val set: 250.59287776
+
+Epoch: 398, MSE train set: 2.48880380
+Epoch: 398, MSE val set: 262.30147862
+
+Epoch: 399, MSE train set: 3.22925463
+Epoch: 399, MSE val set: 261.73605872
+
+Epoch: 400, MSE train set: 3.17048715
+Epoch: 400, MSE val set: 265.54327506
+
+Epoch: 401, MSE train set: 5.75871602
+Epoch: 401, MSE val set: 265.10396038
+
+Epoch: 402, MSE train set: 4.59684740
+Epoch: 402, MSE val set: 270.13344586
+
+Epoch: 403, MSE train set: 3.22626878
+Epoch: 403, MSE val set: 261.75005449
+
+Epoch: 404, MSE train set: 2.30454049
+Epoch: 404, MSE val set: 260.29903641
+
+Epoch: 405, MSE train set: 2.82859743
+Epoch: 405, MSE val set: 264.59516047
+
+Epoch: 406, MSE train set: 2.94463286
+Epoch: 406, MSE val set: 276.67391468
+
+Epoch: 407, MSE train set: 19.68291515
+Epoch: 407, MSE val set: 278.00644799
+
+Epoch: 408, MSE train set: 11.96376619
+Epoch: 408, MSE val set: 286.19960795
+
+Epoch: 409, MSE train set: 6.11978517
+Epoch: 409, MSE val set: 269.04456313
+
+Epoch: 410, MSE train set: 2.38664742
+Epoch: 410, MSE val set: 267.78222494
+
+Epoch: 411, MSE train set: 1.85204229
+Epoch: 411, MSE val set: 272.91480700
+
+Epoch: 412, MSE train set: 1.56415132
+Epoch: 412, MSE val set: 274.86913080
+
+Epoch: 413, MSE train set: 1.80982132
+Epoch: 413, MSE val set: 274.01933313
+
+Epoch: 414, MSE train set: 1.92412084
+Epoch: 414, MSE val set: 271.54200724
+
+Epoch: 415, MSE train set: 1.94589559
+Epoch: 415, MSE val set: 271.45969250
+
+Epoch: 416, MSE train set: 1.82405035
+Epoch: 416, MSE val set: 268.81343150
+
+Epoch: 417, MSE train set: 2.80797246
+Epoch: 417, MSE val set: 271.28641260
+
+Epoch: 418, MSE train set: 7.28262042
+Epoch: 418, MSE val set: 279.71707666
+
+Epoch: 419, MSE train set: 11.87369819
+Epoch: 419, MSE val set: 283.67233451
+
+Epoch: 420, MSE train set: 11.26346936
+Epoch: 420, MSE val set: 272.46542645
+
+Epoch: 421, MSE train set: 4.89511662
+Epoch: 421, MSE val set: 260.76714362
+
+Epoch: 422, MSE train set: 3.16364650
+Epoch: 422, MSE val set: 263.90665598
+
+Epoch: 423, MSE train set: 2.15631925
+Epoch: 423, MSE val set: 264.81827855
+
+Epoch: 424, MSE train set: 1.13576906
+Epoch: 424, MSE val set: 261.89201936
+
+Epoch: 425, MSE train set: 0.75190184
+Epoch: 425, MSE val set: 259.30703875
+
+Epoch: 426, MSE train set: 1.28119990
+Epoch: 426, MSE val set: 262.20178585
+
+Epoch: 427, MSE train set: 1.41818981
+Epoch: 427, MSE val set: 262.70244634
+
+Epoch: 428, MSE train set: 2.64234637
+Epoch: 428, MSE val set: 273.07501794
+
+Epoch: 429, MSE train set: 11.30284571
+Epoch: 429, MSE val set: 256.25376191
+
+Epoch: 430, MSE train set: 11.42465871
+Epoch: 430, MSE val set: 257.21575263
+
+Epoch: 431, MSE train set: 6.35832517
+Epoch: 431, MSE val set: 266.18441155
+
+Epoch: 432, MSE train set: 7.68966577
+Epoch: 432, MSE val set: 263.65046878
+
+Epoch: 433, MSE train set: 4.27191163
+Epoch: 433, MSE val set: 257.86367923
+
+Epoch: 434, MSE train set: 3.26630571
+Epoch: 434, MSE val set: 259.20686965
+
+Epoch: 435, MSE train set: 2.22749488
+Epoch: 435, MSE val set: 262.15383063
+
+Epoch: 436, MSE train set: 1.32447145
+Epoch: 436, MSE val set: 262.33087970
+
+Epoch: 437, MSE train set: 1.86467883
+Epoch: 437, MSE val set: 258.00552694
+
+Epoch: 438, MSE train set: 3.62010426
+Epoch: 438, MSE val set: 270.00284355
+
+Epoch: 439, MSE train set: 3.18349013
+Epoch: 439, MSE val set: 256.47360191
+
+Epoch: 440, MSE train set: 2.71379414
+Epoch: 440, MSE val set: 269.32003433
+
+Epoch: 441, MSE train set: 5.10737634
+Epoch: 441, MSE val set: 264.47043718
+
+Epoch: 442, MSE train set: 5.44566937
+Epoch: 442, MSE val set: 269.15945794
+
+Epoch: 443, MSE train set: 7.00628880
+Epoch: 443, MSE val set: 264.79578284
+
+Epoch: 444, MSE train set: 3.67422206
+Epoch: 444, MSE val set: 260.84792271
+
+Epoch: 445, MSE train set: 2.45696943
+Epoch: 445, MSE val set: 266.82283646
+
+Epoch: 446, MSE train set: 2.39132451
+Epoch: 446, MSE val set: 261.90845010
+
+Epoch: 447, MSE train set: 2.45393708
+Epoch: 447, MSE val set: 268.20317559
+
+Epoch: 448, MSE train set: 3.67004726
+Epoch: 448, MSE val set: 264.93633322
+
+Epoch: 449, MSE train set: 7.60451718
+Epoch: 449, MSE val set: 264.71143048
+
+Epoch: 450, MSE train set: 6.06040107
+Epoch: 450, MSE val set: 270.84890346
+
+Epoch: 451, MSE train set: 3.86294850
+Epoch: 451, MSE val set: 263.96702072
+
+Epoch: 452, MSE train set: 3.90895735
+Epoch: 452, MSE val set: 263.67826573
+
+Epoch: 453, MSE train set: 3.50621145
+Epoch: 453, MSE val set: 271.51565711
+
+Epoch: 454, MSE train set: 3.28865843
+Epoch: 454, MSE val set: 265.38426114
+
+Epoch: 455, MSE train set: 2.51562402
+Epoch: 455, MSE val set: 253.77302246
+
+Epoch: 456, MSE train set: 2.50018318
+Epoch: 456, MSE val set: 267.72927564
+
+Epoch: 457, MSE train set: 2.24839038
+Epoch: 457, MSE val set: 264.64274192
+
+Epoch: 458, MSE train set: 2.26305589
+Epoch: 458, MSE val set: 262.08074703
+
+Epoch: 459, MSE train set: 2.86707017
+Epoch: 459, MSE val set: 268.05283593
+
+Epoch: 460, MSE train set: 4.30742242
+Epoch: 460, MSE val set: 262.15849142
+
+Epoch: 461, MSE train set: 4.94401565
+Epoch: 461, MSE val set: 274.34954755
+
+Epoch: 462, MSE train set: 9.80749969
+Epoch: 462, MSE val set: 258.33119494
+
+Epoch: 463, MSE train set: 8.63886622
+Epoch: 463, MSE val set: 247.82289620
+
+Epoch: 464, MSE train set: 3.01954578
+Epoch: 464, MSE val set: 257.86073126
+
+Epoch: 465, MSE train set: 2.09917203
+Epoch: 465, MSE val set: 257.20413136
+
+Epoch: 466, MSE train set: 1.35897231
+Epoch: 466, MSE val set: 255.85812732
+
+Epoch: 467, MSE train set: 0.95305543
+Epoch: 467, MSE val set: 254.21381440
+
+Epoch: 468, MSE train set: 4.19802188
+Epoch: 468, MSE val set: 274.36613240
+
+Epoch: 469, MSE train set: 8.02614431
+Epoch: 469, MSE val set: 270.66101920
+
+Epoch: 470, MSE train set: 7.39977117
+Epoch: 470, MSE val set: 265.48668494
+
+Epoch: 471, MSE train set: 6.36895006
+Epoch: 471, MSE val set: 283.01473291
+
+Epoch: 472, MSE train set: 3.11402367
+Epoch: 472, MSE val set: 266.23481808
+
+Epoch: 473, MSE train set: 1.84345442
+Epoch: 473, MSE val set: 265.17513380
+
+Epoch: 474, MSE train set: 1.98839436
+Epoch: 474, MSE val set: 258.68821820
+
+Epoch: 475, MSE train set: 2.68140879
+Epoch: 475, MSE val set: 260.64326921
+
+Epoch: 476, MSE train set: 2.17961089
+Epoch: 476, MSE val set: 270.52394399
+
+Epoch: 477, MSE train set: 5.77341481
+Epoch: 477, MSE val set: 261.95758824
+
+Epoch: 478, MSE train set: 4.59731203
+Epoch: 478, MSE val set: 259.49381892
+
+Epoch: 479, MSE train set: 2.75254260
+Epoch: 479, MSE val set: 269.92973660
+
+Epoch: 480, MSE train set: 4.15190312
+Epoch: 480, MSE val set: 262.57464650
+
+Epoch: 481, MSE train set: 6.20037463
+Epoch: 481, MSE val set: 265.51373876
+
+slurmstepd: error: *** JOB 1040092 ON gpu-44 CANCELLED AT 2019-05-05T13:02:03 DUE TO TIME LIMIT ***

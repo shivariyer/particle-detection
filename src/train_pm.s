@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
-#SBATCH --time=2:00:00
-#SBATCH --mem=62GB
+#SBATCH --time=18:00:00
+#SBATCH --mem=32GB
 #SBATCH --job-name=train_pm
 #SBATCH --output=slurm_pm_%j.out
 

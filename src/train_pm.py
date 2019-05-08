@@ -143,14 +143,14 @@ def main():
 	model = torch.nn.DataParallel(model).cuda()
 	model.load_state_dict(torch.load("model_hazy_best.pth"),strict=False) # on GPU
 	criterion = nn.MSELoss().cuda()
-	optimizer = torch.optim.Adam(model.parameters(),lr=0.0005)
+	optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
 	train_dataset = Dataset(ids_train, files_train, ppm_train, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),])) # normalize
 	train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=16, shuffle=True, num_workers=2)
 	val_dataset = Dataset(ids_val, files_val, ppm_val, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),]))
 	val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=16, shuffle=False, num_workers=2)
 
 	best_loss = 1e5
-	for epoch in range(20):
+	for epoch in range(500):
 		train_loss = train(train_loader,model,criterion,optimizer)
 		val_loss = val(val_loader,model,criterion)
 		print('Epoch: %d, MSE train set: %.8f' % (epoch+1, train_loss))
