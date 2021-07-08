@@ -90,15 +90,15 @@ def train(train_loader,model,criterion,optimizer):
 	for x, y in train_loader:
 		epoch_samples += x.size(0)
 		y = y.float()
-		x = x.cuda(async=True)
-		y = y.cuda(async=True)
+		x = x.cuda(non_blocking=True)
+		y = y.cuda(non_blocking=True)
 		
 		x_var = torch.autograd.Variable(x)
 		y_var = torch.autograd.Variable(y)
 		
 		yhat = model(x_var)
 		loss = criterion(yhat.squeeze(),y_var)
-		total_loss += loss.data[0]
+		total_loss += loss.data.item()
 		optimizer.zero_grad()
 		loss.backward()
 		optimizer.step()
@@ -114,15 +114,15 @@ def val(val_loader,model,criterion):
 	for x, y in val_loader:
 		epoch_samples += x.size(0)
 		y = y.float()
-		x = x.cuda(async=True)
-		y = y.cuda(async=True)
+		x = x.cuda(non_blocking=True)
+		y = y.cuda(non_blocking=True)
 		
 		x_var = torch.autograd.Variable(x)
 		y_var = torch.autograd.Variable(y)
 		
 		yhat = model(x_var)
 		loss = criterion(yhat.squeeze(),y_var)
-		total_loss += loss.data[0]
+		total_loss += loss.data.item()
 		
 	return (total_loss/epoch_samples)
 
@@ -145,9 +145,9 @@ def main():
 	criterion = nn.MSELoss().cuda()
 	optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
 	train_dataset = Dataset(ids_train, files_train, ppm_train, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),])) # normalize
-	train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=16, shuffle=True, num_workers=2)
+	train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=2)
 	val_dataset = Dataset(ids_val, files_val, ppm_val, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),]))
-	val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=16, shuffle=False, num_workers=2)
+	val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=2)
 
 	best_loss = 1e5
 	for epoch in range(500):

@@ -89,15 +89,15 @@ def train(train_loader,model,criterion,optimizer,epoch):
 	for x, y in train_loader:
 		epoch_samples += x.size(0)
 		#y = y.float()
-		x = x.cuda(async=True)
-		y = y.cuda(async=True)
+		x = x.cuda(non_blocking=True)
+		y = y.cuda(non_blocking=True)
 		
 		x_var = torch.autograd.Variable(x)
 		y_var = torch.autograd.Variable(y)
 		
 		yhat = model(x_var)
 		loss = criterion(yhat,y_var)
-		total_loss += loss.data[0]
+		total_loss += loss.data.item()
 		optimizer.zero_grad()
 		loss.backward()
 		optimizer.step()
@@ -116,7 +116,7 @@ def main():
 	criterion = nn.MSELoss().cuda()
 	optimizer = torch.optim.Adam(model.parameters(),lr=0.0005)
 	train_dataset = Dataset(ids_train, files_train, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),]), transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),])) # normalize
-	train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=16, shuffle=True, num_workers=2)
+	train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=2)
 	
 	best_loss = 1e5
 	for epoch in range(20):
