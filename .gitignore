@@ -8,3 +8,6 @@ city2kitti
 __MACOSX*
 img
 *.pth
+*.tar*
+*slurm*
+*.ptl
