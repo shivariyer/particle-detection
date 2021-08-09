@@ -11,3 +11,5 @@ img
 *.tar*
 *slurm*
 *.ptl
+*.pt
+__pycache__*

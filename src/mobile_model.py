@@ -70,12 +70,16 @@ class LeUNet(nn.Module):
 def main():
 	model = LeUNet()
 	# model = torch.nn.DataParallel(model).cuda()\
-	model = model.cuda()
+	# model = model.cuda()
 	model.load_state_dict(torch.load("../src/model_hazy_best.pth"),strict=False)
-	model = torch.quantization.convert(model)
-	model = torch.jit.script(model)
-	model = optimize_for_mobile(model)
-	model._save_for_lite_interpreter("mobile_model.ptl")
+	model.eval()
+	# model = torch.quantization.convert(model)
+	# model = torch.jit.script(model)
+	# model = optimize_for_mobile(model)
+	input_tensor = torch.rand(1,3,256,256)
+	script_model = torch.jit.trace(model,input_tensor)
+	script_model._save_for_lite_interpreter("mobile_model.pt")
+	# model._save_for_lite_interpreter("mobile_model.ptl")
 
 
 if __name__ == "__main__":
