@@ -21,11 +21,11 @@ import cv2
 
 
 class Dataset(torch.utils.data.Dataset):
-    def __init__(self, list_IDs, files, ppm, tranform):
+    def __init__(self, list_IDs, files, tranform, transform2):
         self.filenames = files
         self.list_IDs = list_IDs
-        self.ppm = ppm
         self.transform = tranform
+        self.transform2 = transform2
 
     def __len__(self):
         return len(self.list_IDs)
@@ -33,18 +33,24 @@ class Dataset(torch.utils.data.Dataset):
     def __getitem__(self, index):
         ID = self.list_IDs[index]
         cv_in = cv2.imread('/scratch/ab9738/pollution_img/data/'+self.filenames[ID]+'.jpg',1) # color
+        cv_out = cv2.imread('/scratch/ab9738/pollution_img/data/'+self.filenames[ID]+'_trans.jpg',0) # grayscale
+        #if cv_in is None:
+            #print('input: '+self.filenames[ID])
+        #if cv_out is None:
+            #print('output: '+self.filenames[ID])
         pil_in = Image.fromarray(cv_in)
+        pil_out = Image.fromarray(cv_out)
         X = self.transform(pil_in)
-        y = self.ppm[ID]
-        return X,y
+        Y = self.transform2(pil_out)
+        return X,Y
 
 def double_conv(in_channels, out_channels):
     return nn.Sequential(nn.Conv2d(in_channels, out_channels, 3, padding=1),nn.ReLU(inplace=True),nn.Conv2d(out_channels, out_channels, 3, padding=1),nn.ReLU(inplace=True))
 
-class LeUNet(nn.Module):
+class UNet(nn.Module):
 
     def __init__(self):
-        super(LeUNet,self).__init__()
+        super(UNet,self).__init__()
         self.dconv_down1 = double_conv(3, 64)
         self.dconv_down2 = double_conv(64, 128)
         self.dconv_down3 = double_conv(128, 256)
@@ -55,9 +61,6 @@ class LeUNet(nn.Module):
         self.dconv_up2 = double_conv(128 + 256, 128)
         self.dconv_up1 = double_conv(128 + 64, 64)
         self.conv_last = nn.Conv2d(64, 1, 1)
-        self.features = nn.Sequential(nn.Conv2d(1, 6, 5),nn.ReLU(inplace=True),nn.MaxPool2d(2),nn.Conv2d(6, 16, 5),nn.ReLU(inplace=True),nn.MaxPool2d(2),)
-        self.avgpool = nn.AdaptiveAvgPool2d((5, 5))
-        self.estimator = nn.Sequential(nn.Linear(16*5*5,120),nn.ReLU(inplace=True),nn.Linear(120, 84),nn.ReLU(inplace=True),nn.Linear(84, 1),)
 
     def forward(self, x):
         conv1 = self.dconv_down1(x)
@@ -76,20 +79,16 @@ class LeUNet(nn.Module):
         x = self.upsample(x)
         x = torch.cat([x, conv1], dim=1)
         x = self.dconv_up1(x)
-        x = self.conv_last(x)
-        x = self.features(x)
-        x = self.avgpool(x)
-        x = x.view(x.size(0),16*5*5)
-        x = self.estimator(x)
-        return x
+        out = self.conv_last(x)
+        return out
 
-def train(train_loader,model,criterion,optimizer):
+def train(train_loader,model,criterion,optimizer,epoch):
     model.train()
     total_loss = 0.0
     epoch_samples = 0
     for x, y in train_loader:
         epoch_samples += x.size(0)
-        y = y.float()
+        #y = y.float()
         x = x.cuda(non_blocking=True)
         y = y.cuda(non_blocking=True)
 
@@ -97,7 +96,7 @@ def train(train_loader,model,criterion,optimizer):
         y_var = torch.autograd.Variable(y)
 
         yhat = model(x_var)
-        loss = criterion(yhat.squeeze(),y_var)
+        loss = criterion(yhat,y_var)
         total_loss += loss.data.item()
         optimizer.zero_grad()
         loss.backward()
@@ -106,58 +105,26 @@ def train(train_loader,model,criterion,optimizer):
     return (total_loss/epoch_samples)
 
 
-def val(val_loader,model,criterion):
-    model.eval()
-    total_loss = 0.0
-    epoch_samples = 0
-    #with torch.no_grad():
-    for x, y in val_loader:
-        epoch_samples += x.size(0)
-        y = y.float()
-        x = x.cuda(non_blocking=True)
-        y = y.cuda(non_blocking=True)
-
-        x_var = torch.autograd.Variable(x)
-        y_var = torch.autograd.Variable(y)
-
-        yhat = model(x_var)
-        loss = criterion(yhat.squeeze(),y_var)
-        total_loss += loss.data.item()
-
-    return (total_loss/epoch_samples)
-
 def main():
     data = pd.read_csv('../china_data.csv')
-    data_train = data.sample(frac=0.8,random_state=17)
-    data_val = data.loc[~data.index.isin(data_train.index)]
+    data_train = data.sample(frac=1) # unordered rn, data (if want ordered)
     files_train = list(data_train['filename'])
-    files_val = list(data_val['filename'])
-    ppm_train = list(data_train['ppm'])
-    ppm_val = list(data_val['ppm'])
     ids_train = [i for i in range(len(files_train))]
-    ids_val = [i for i in range(len(files_val))]
     data = None
-    data_train = None
-    data_val = None
-    model = LeUNet()
+    model = UNet()
     model = torch.nn.DataParallel(model).cuda()
-    model.load_state_dict(torch.load("model_haze_china.pth"),strict=False) # on GPU
     criterion = nn.MSELoss().cuda()
-    optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
-    train_dataset = Dataset(ids_train, files_train, ppm_train, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),])) # normalize
+    optimizer = torch.optim.Adam(model.parameters(),lr=0.0005)
+    train_dataset = Dataset(ids_train, files_train, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),]), transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),])) # normalize
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True, num_workers=12)
-    val_dataset = Dataset(ids_val, files_val, ppm_val, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),]))
-    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=64, shuffle=False, num_workers=12)
 
     best_loss = 1e5
-    for epoch in range(500):
-        train_loss = train(train_loader,model,criterion,optimizer)
-        val_loss = val(val_loader,model,criterion)
-        print('Epoch: %d, MSE train set: %.8f' % (epoch+1, train_loss))
-        print('Epoch: %d, MSE val set: %.8f\n' % (epoch+1, val_loss))
-        if val_loss < best_loss:
-            torch.save(model.state_dict(),'model_pm_china.pth')
-            best_loss = val_loss
+    for epoch in range(20):
+        loss = train(train_loader,model,criterion,optimizer,epoch)
+        print('Epoch: %d, MSE: %.8f' % (epoch+1, loss))
+        if loss < best_loss:
+            torch.save(model.state_dict(),r'model_haze_china.pth')
+            best_loss = loss
 
 if __name__ == "__main__":
     main()
