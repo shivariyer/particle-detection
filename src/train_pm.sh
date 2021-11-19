@@ -7,5 +7,5 @@
 #SBATCH --job-name=train_pm
 #SBATCH --output=slurm_pm_%j.out
 
-cd /scratch/ab9738/pollution_img/code/particle-detection/src
+cd /scratch/ab9738/pollution_img/code/src
 python train_pm.py

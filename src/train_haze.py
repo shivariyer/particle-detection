@@ -106,7 +106,7 @@ def train(train_loader,model,criterion,optimizer,epoch):
 
 
 def main():
-    data = pd.read_csv('../china_data.csv')
+    data = pd.read_csv('../all_data.csv')
     data_train = data.sample(frac=1) # unordered rn, data (if want ordered)
     files_train = list(data_train['filename'])
     ids_train = [i for i in range(len(files_train))]
@@ -123,7 +123,7 @@ def main():
         loss = train(train_loader,model,criterion,optimizer,epoch)
         print('Epoch: %d, MSE: %.8f' % (epoch+1, loss))
         if loss < best_loss:
-            torch.save(model.state_dict(),r'model_haze_china.pth')
+            torch.save(model.state_dict(),r'model_haze_all.pth')
             best_loss = loss
 
 if __name__ == "__main__":

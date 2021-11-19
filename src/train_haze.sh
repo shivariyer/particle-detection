@@ -7,5 +7,5 @@
 #SBATCH --job-name=train_hazy
 #SBATCH --output=slurm_haze_%j.out
 
-cd /scratch/ab9738/pollution_img/code/particle-detection/src
+cd /scratch/ab9738/pollution_img/code/src
 python train_haze.py

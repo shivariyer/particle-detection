@@ -127,7 +127,7 @@ def val(val_loader,model,criterion):
     return (total_loss/epoch_samples)
 
 def main():
-    data = pd.read_csv('../china_data.csv')
+    data = pd.read_csv('../all_data.csv')
     data_train = data.sample(frac=0.8,random_state=17)
     data_val = data.loc[~data.index.isin(data_train.index)]
     files_train = list(data_train['filename'])
@@ -141,7 +141,7 @@ def main():
     data_val = None
     model = LeUNet()
     model = torch.nn.DataParallel(model).cuda()
-    model.load_state_dict(torch.load("model_haze_china.pth"),strict=False) # on GPU
+    model.load_state_dict(torch.load("model_haze_all.pth"),strict=False) # on GPU
     criterion = nn.MSELoss().cuda()
     optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
     train_dataset = Dataset(ids_train, files_train, ppm_train, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),])) # normalize
@@ -156,7 +156,7 @@ def main():
         print('Epoch: %d, MSE train set: %.8f' % (epoch+1, train_loss))
         print('Epoch: %d, MSE val set: %.8f\n' % (epoch+1, val_loss))
         if val_loss < best_loss:
-            torch.save(model.state_dict(),'model_pm_china.pth')
+            torch.save(model.state_dict(),'model_pm_all.pth')
             best_loss = val_loss
 
 if __name__ == "__main__":
