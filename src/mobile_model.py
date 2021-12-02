@@ -72,7 +72,7 @@ def main():
     model = LeUNet()
     # model = torch.nn.DataParallel(model).cuda()\
     # model = model.cuda()
-    model.load_state_dict(torch.load("../src/model_pm_china.pth"),strict=False)
+    model.load_state_dict(torch.load("../src/model_pm_china.pth",map_location=torch.device('cpu')),strict=False)
     model.eval()
     # model = torch.quantization.convert(model)
     # model = torch.jit.script(model)
