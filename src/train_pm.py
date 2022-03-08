@@ -83,11 +83,53 @@ class LeUNet(nn.Module):
         x = self.estimator(x)
         return x
 
+class LeUNetEns(nn.Module):
+
+    def __init__(self):
+        super(LeUNetEns,self).__init__()
+        self.dconv_down1 = double_conv(3, 64)
+        self.dconv_down2 = double_conv(64, 128)
+        self.dconv_down3 = double_conv(128, 256)
+        self.dconv_down4 = double_conv(256, 512)
+        self.maxpool = nn.MaxPool2d(2)
+        self.upsample = nn.Upsample(scale_factor=2, mode='bilinear') #, align_corners=True)
+        self.dconv_up3 = double_conv(256 + 512, 256)
+        self.dconv_up2 = double_conv(128 + 256, 128)
+        self.dconv_up1 = double_conv(128 + 64, 64)
+        self.conv_last = nn.Conv2d(64, 1, 1)
+        self.features = nn.Sequential(nn.Conv2d(1, 6, 5),nn.ReLU(inplace=True),nn.MaxPool2d(2),nn.Conv2d(6, 16, 5),nn.ReLU(inplace=True),nn.MaxPool2d(2),)
+        self.avgpool = nn.AdaptiveAvgPool2d((5, 5))
+        # self.estimator = nn.Sequential(nn.Linear(16*5*5,120),nn.ReLU(inplace=True),nn.Linear(120, 84),nn.ReLU(inplace=True),nn.Linear(84, 1),)
+
+    def forward(self, x):
+        conv1 = self.dconv_down1(x)
+        x = self.maxpool(conv1)
+        conv2 = self.dconv_down2(x)
+        x = self.maxpool(conv2)
+        conv3 = self.dconv_down3(x)
+        x = self.maxpool(conv3)
+        x = self.dconv_down4(x)
+        x = self.upsample(x)
+        x = torch.cat([x, conv3], dim=1)
+        x = self.dconv_up3(x)
+        x = self.upsample(x)
+        x = torch.cat([x, conv2], dim=1)
+        x = self.dconv_up2(x)
+        x = self.upsample(x)
+        x = torch.cat([x, conv1], dim=1)
+        x = self.dconv_up1(x)
+        x = self.conv_last(x)
+        x = self.features(x)
+        x = self.avgpool(x)
+        x = x.view(x.size(0),16*5*5)
+        # x = self.estimator(x)
+        return x
+
 
 class ResNetUNet(nn.Module):
 
     def __init__(self):
-        super(LeUNet,self).__init__()
+        super(ResNetUNet,self).__init__()
         self.dconv_down1 = double_conv(3, 64)
         self.dconv_down2 = double_conv(64, 128)
         self.dconv_down3 = double_conv(128, 256)
@@ -133,6 +175,8 @@ class StandardNet(nn.Module):
     def __init__(self, modelname='resnet101'):
         super(StandardNet, self).__init__()
         self.model = eval("models."+modelname+"()")
+        if(modelname=='inception_v3'):
+            self.model = eval("models."+modelname+"(aux_logits=False)")
         self.estimator = nn.Sequential(nn.Linear(1000,120),nn.ReLU(inplace=True),nn.Linear(120,84),nn.ReLU(inplace=True),nn.Linear(84, 1),)
 
     def forward(self, x):
@@ -153,6 +197,26 @@ class EnsembleNet(nn.Module):
         b = self.vgg16_pred(x)
         c = self.inceptionv3_pred(x)
         x = torch.cat((a,b,c),1)
+        x = self.estimator(x)
+        return x
+
+class EnsembleLeUNet(nn.Module):
+    def __init__(self):
+        super(EnsembleLeUNet, self).__init__()
+        self.resnet50_pred = models.resnet50()
+        self.vgg16_pred = models.vgg16()
+        self.inceptionv3_pred = models.inception_v3(aux_logits=False)
+        self.leunet_pred = LeUNetEns()
+        # self.leunet_pred = torch.nn.DataParallel(self.leunet_pred).cuda()
+        self.leunet_pred.load_state_dict(torch.load("model_haze_all.pth", map_location='cpu'),strict=False)
+        self.estimator = nn.Sequential(nn.Linear(3400,120),nn.ReLU(inplace=True),nn.Linear(120,84),nn.ReLU(inplace=True),nn.Linear(84,1),)
+
+    def forward(self, x):
+        a = self.resnet50_pred(x)
+        b = self.vgg16_pred(x)
+        c = self.inceptionv3_pred(x)
+        d = self.leunet_pred(x)
+        x = torch.cat((a,b,c,d),1)
         x = self.estimator(x)
         return x
 
@@ -260,8 +324,26 @@ def val(val_loader,model,criterion):
 
     return (total_loss/epoch_samples)
 
+def freeze_weights_leunet(model):
+    model.module.dconv_down1[0].weight.requires_grad, model.module.dconv_down1[0].bias.requires_grad = False, False
+    model.module.dconv_down2[0].weight.requires_grad, model.module.dconv_down2[0].bias.requires_grad = False, False
+    model.module.dconv_down3[0].weight.requires_grad, model.module.dconv_down3[0].bias.requires_grad = False, False
+    model.module.dconv_down4[0].weight.requires_grad, model.module.dconv_down4[0].bias.requires_grad = False, False
+    model.module.dconv_up1[0].weight.requires_grad, model.module.dconv_up1[0].bias.requires_grad = False, False
+    model.module.dconv_up2[0].weight.requires_grad, model.module.dconv_up2[0].bias.requires_grad = False, False
+    model.module.dconv_up3[0].weight.requires_grad, model.module.dconv_up3[0].bias.requires_grad = False, False
+    model.module.dconv_down1[2].weight.requires_grad, model.module.dconv_down1[2].bias.requires_grad = False, False
+    model.module.dconv_down2[2].weight.requires_grad, model.module.dconv_down2[2].bias.requires_grad = False, False
+    model.module.dconv_down3[2].weight.requires_grad, model.module.dconv_down3[2].bias.requires_grad = False, False
+    model.module.dconv_down4[2].weight.requires_grad, model.module.dconv_down4[2].bias.requires_grad = False, False
+    model.module.dconv_up1[2].weight.requires_grad, model.module.dconv_up1[2].bias.requires_grad = False, False
+    model.module.dconv_up2[2].weight.requires_grad, model.module.dconv_up2[2].bias.requires_grad = False, False
+    model.module.dconv_up3[2].weight.requires_grad, model.module.dconv_up3[2].bias.requires_grad = False, False
+    model.module.conv_last.weight.requires_grad, model.module.conv_last.bias.requires_grad = False, False
+    return model
+
 def main():
-    data = pd.read_csv('../all_data.csv')
+    data = pd.read_csv('../train_data.csv')
     data_train = data.sample(frac=0.8,random_state=17)
     data_val = data.loc[~data.index.isin(data_train.index)]
     files_train = list(data_train['filename'])
@@ -273,15 +355,21 @@ def main():
     data = None
     data_train = None
     data_val = None
-    # model = LeUNet()
-    model = ResNetUNet()
-    model = torch.nn.DataParallel(model).cuda()
-    model.load_state_dict(torch.load("model_haze_all.pth"),strict=False) # on GPU
-    # model = StandardNet('resnet50').cuda()
-    # model = StandardNet('vgg16').cuda()
-    # model = EPAPLN().cuda()
-    # model = EnsembleNet().cuda()    
+#     model = LeUNet()
+#     model = ResNetUNet()
+#     model = torch.nn.DataParallel(model).cuda()
+#     model.load_state_dict(torch.load("model_haze_all.pth"),strict=False) # on GPU
+#     model = StandardNet('resnet50').cuda()
+#     model = StandardNet('vgg16').cuda()
+    model = StandardNet('inception_v3').cuda()
+#     model = EPAPLN().cuda()
+#     model = EnsembleNet().cuda()  
+#     model = EnsembleLeUNet().cuda()  
+
     criterion = nn.MSELoss().cuda()
+    # optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),lr=1e-4)
+    # model = freeze_weights_leunet(model)
+
     optimizer = torch.optim.Adam(model.parameters(),lr=1e-4)
     train_dataset = Dataset(ids_train, files_train, ppm_train, transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor(),transforms.Normalize(mean=[0.5231, 0.5180, 0.5115],std=[0.2014, 0.2018, 0.2100]),])) # normalize
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=12)
@@ -295,7 +383,7 @@ def main():
         print('Epoch: %d, MSE train set: %.8f' % (epoch+1, train_loss))
         print('Epoch: %d, MSE val set: %.8f\n' % (epoch+1, val_loss))
         if val_loss < best_loss:
-            torch.save(model.state_dict(),'resnetunet_pm_all.pth')
+            torch.save(model.state_dict(),'inception_pm_train.pth')
             best_loss = val_loss
 
 if __name__ == "__main__":
