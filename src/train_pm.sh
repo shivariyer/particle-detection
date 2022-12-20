@@ -7,5 +7,7 @@
 #SBATCH --job-name=train_pm
 #SBATCH --output=slurm_pm_%j.out
 
+conda activate /scratch/ab9738/pollution_img/env_pol/;
+export PATH=/scratch/ab9738/pollution_img/env_pol/bin:$PATH;
 cd /scratch/ab9738/pollution_img/code/src
 python train_pm.py

@@ -2,6 +2,7 @@ Shanghai1
 Shanghai2
 Shanghai3
 Beijing
+.ipynb_checkpoints
 *.zip
 city2kitti
 .DS_Store

@@ -344,7 +344,7 @@ def freeze_weights_leunet(model):
 
 def main():
     data = pd.read_csv('../train_data.csv')
-    data_train = data.sample(frac=0.8,random_state=17)
+    data_train = data.sample(frac=0.9,random_state=17)
     data_val = data.loc[~data.index.isin(data_train.index)]
     files_train = list(data_train['filename'])
     files_val = list(data_val['filename'])
@@ -359,7 +359,7 @@ def main():
 #     model = ResNetUNet()
 #     model = torch.nn.DataParallel(model).cuda()
 #     model.load_state_dict(torch.load("model_haze_all.pth"),strict=False) # on GPU
-#     model = StandardNet('resnet50').cuda()
+    # model = StandardNet('resnet50').cuda()
 #     model = StandardNet('vgg16').cuda()
     model = StandardNet('inception_v3').cuda()
 #     model = EPAPLN().cuda()
@@ -383,7 +383,7 @@ def main():
         print('Epoch: %d, MSE train set: %.8f' % (epoch+1, train_loss))
         print('Epoch: %d, MSE val set: %.8f\n' % (epoch+1, val_loss))
         if val_loss < best_loss:
-            torch.save(model.state_dict(),'inception_pm_train.pth')
+            torch.save(model.state_dict(),'inception_cctv.pth')
             best_loss = val_loss
 
 if __name__ == "__main__":
